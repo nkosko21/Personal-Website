@@ -16,3 +16,13 @@ code {
   display: flex;
   flex-wrap: wrap; /* Allow items to wrap to the next line */
 }
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}

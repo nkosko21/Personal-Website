@@ -11,10 +11,10 @@ import {
   Link,
   BrowserRouter,
 } from "react-router-dom";
-import Home from './main_pages/Home';
-import ProfessionalProjects from './main_pages/ProffessionalProjects';
-import Videography from './main_pages/Videography';
-import Photography from './main_pages/Photography';
+import Home from './pages/Home';
+import ProfessionalProjects from './pages/ProffessionalProjects';
+import Videography from './pages/Videography';
+import Photography from './pages/Photography';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

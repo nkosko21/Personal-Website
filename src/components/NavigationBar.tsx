@@ -7,7 +7,7 @@ export default function NavigationBar(props: {defaultValue: string}) {
   return (
     <div className='nav-bar'>
       <Tabs defaultValue={props.defaultValue}>
-        <Tabs.List>
+        <Tabs.List justify="center">
           <Link to="/">
             <Tabs.Tab value="home" leftSection={<IconHome/>}>Home</Tabs.Tab>
           </Link>

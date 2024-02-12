@@ -1,0 +1,55 @@
+.mantine-Grid-inner {
+    display: flex;
+    justify-content: center;
+}
+
+.about-me-section {
+    background-color: #f9f9f9;
+    padding: 50px 0;
+  }
+  
+.about-me-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.profile-image {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 20px auto;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+.professional-images {
+    width: 440px;
+    height: 300px;
+    margin: 10px;
+    margin-bottom: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    object-fit: cover; 
+}
+
+.professional-image-text p {
+    max-width: 440px;
+    font-size: 1rem;
+}
+
+.student-life-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

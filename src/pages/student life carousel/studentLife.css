@@ -1,0 +1,15 @@
+h1 {
+  margin: 0;
+  padding: 0;
+}
+.student-life-container {
+    width: 900px;
+    height: 600px;
+    border: 2px solid black;
+    margin: 10px;
+}
+
+.control[data-inactive] {
+  opacity: 0;
+  cursor: default;
+}

@@ -3,10 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 import NavigationBar from './components/NavigationBar'; 
 import '@mantine/core/styles.css';
-import Home from './main_pages/Home';
-import ProfessionalProjects from './main_pages/ProffessionalProjects';
-import Videography from './main_pages/Videography';
-import Photography from './main_pages/Photography';
+import Home from './pages/Home';
+import ProfessionalProjects from './pages/ProffessionalProjects';
+import Videography from './pages/Videography';
+import Photography from './pages/Photography';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
