@@ -1,5 +1,3 @@
-import { useHover } from "@mantine/hooks";
-import React from "react";
 import BeMeal_Feed from '../../images/BeMeal_Feed.png';
 
 export default function BeMeal() {

@@ -1,5 +1,4 @@
 import { Group, Avatar, Text, Accordion } from '@mantine/core';
-import React from 'react';
 import canvas_icon from '../images/canvas_icon.png';
 import spotify_icon from '../images/spotify_logo.png';
 import marble_solitaire_icon from '../images/marble_solitaire_icon.png';

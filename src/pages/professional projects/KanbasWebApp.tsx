@@ -1,7 +1,5 @@
 import { Image } from "@mantine/core"
-import React from "react";
 import kanbas_dashboard from '../../images/Kanbas_Dashboard.png';
-import kanbas_grades from '../../images/Kanbas_Grades.png';
 import '../../index.css'
 
 export default function KanbasWebApp() {

@@ -1,7 +1,5 @@
-import React from 'react';
 import { Image } from '@mantine/core';
 import nick_tackle from '../../images/Nick_Tackle.jpg';
-
 
 export default function OutsideTheClassroom() {
     return (

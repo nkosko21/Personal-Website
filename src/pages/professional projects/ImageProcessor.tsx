@@ -1,4 +1,3 @@
-import React from 'react';
 import Image_Processor from '../../images/Image_Processor.png';
 
 export default function ImageProcessor() {

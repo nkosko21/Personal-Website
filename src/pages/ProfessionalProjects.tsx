@@ -1,4 +1,3 @@
-import React from "react";
 import NavigationBar from "../components/NavigationBar";
 import PPAccordian from '../components/ProjectsAccordian';
 

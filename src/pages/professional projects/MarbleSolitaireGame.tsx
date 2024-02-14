@@ -1,4 +1,3 @@
-import React from "react";
 import MSolitaire_mid from '../../images/MSolitaire_mid.png';
 import '../../index.css'
 

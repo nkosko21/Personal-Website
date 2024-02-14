@@ -1,8 +1,6 @@
-import { Card, Image} from '@mantine/core';
-import React from 'react';
+import {  Image} from '@mantine/core';
 import './studentLife.css';
 import '../../index.css';
-import london from '../../images/london.jpeg';
 import st_pauls from '../../images/st_pauls.jpeg';
 
 export default function InLondon() {

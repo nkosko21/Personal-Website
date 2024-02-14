@@ -1,7 +1,5 @@
-import React from "react";
 import { Image } from "@mantine/core";
-
-
+import northeastern_classroom from '../../images/Northeastern_Classroom.jpeg';
 
 export default function InTheClassroom() {
     return (
@@ -21,7 +19,7 @@ export default function InTheClassroom() {
                     </p>
                 </div>
                 <Image
-                    src={null}
+                    src={northeastern_classroom}
                     style={{ height: 576, width: 432, margin: 10 }}
                     fallbackSrc="https://placehold.co/600x400?text=Placeholder"
                     radius="md"

@@ -1,5 +1,4 @@
 import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
-import React from "react";
 import NavigationBar from "../components/NavigationBar";
 import RFE_S4_m2 from '../images/RFE_S4_M2.png';
 import RFE_S3 from '../images/RFE_S3.png';

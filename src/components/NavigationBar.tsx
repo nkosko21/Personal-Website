@@ -1,6 +1,6 @@
-import { Tabs, rem } from '@mantine/core';
-import { IconHome, IconCamera, IconMovie, IconFolder } from '@tabler/icons-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Tabs } from '@mantine/core';
+import { IconHome, IconCamera, IconFolder } from '@tabler/icons-react';
+import { Link } from 'react-router-dom';
 import './NavigationBar.css';
 
 export default function NavigationBar(props: {defaultValue: string}) {

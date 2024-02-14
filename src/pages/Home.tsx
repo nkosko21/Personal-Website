@@ -1,15 +1,10 @@
-import { Affix, Grid, rem, Tooltip, Transition } from "@mantine/core";
+import { Affix, Tooltip, Transition } from "@mantine/core";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import NavigationBar from "../components/NavigationBar";
 import nick_about from '../images/nick_about.jpg';
 import './Home.css';
 import '../index.css';
-import nick_sitting from '../images/nick_sitting.png';
 import nick_showing from '../images/nick_showing.png';
-import nick_walking from '../images/nick_walking.jpeg';
-import nick_DEM_group from '../images/nick_DEM_Group.jpg';
-import nick_governer_vice from '../images/nick_governer_vice.jpg';
 import nick_shaking_hands from '../images/nick_shaking_hand.jpg';
 import SLS_logo from '../images/SLS_logo.png';
 import '@mantine/carousel/styles.css';
