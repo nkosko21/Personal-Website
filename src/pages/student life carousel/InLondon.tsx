@@ -1,7 +1,7 @@
 import {  Image} from '@mantine/core';
 import './studentLife.css';
 import '../../index.css';
-import st_pauls from '../../images/st_pauls.jpeg';
+import st_pauls from '../../images/st_pauls.jpg';
 
 export default function InLondon() {
     return (

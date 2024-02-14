@@ -1,5 +1,5 @@
 import { Image } from "@mantine/core";
-import northeastern_classroom from '../../images/Northeastern_Classroom.jpeg';
+import northeastern_classroom from '../../images/Northeastern_Classroom.jpg';
 
 export default function InTheClassroom() {
     return (
