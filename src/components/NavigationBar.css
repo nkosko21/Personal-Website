@@ -2,3 +2,18 @@
     text-decoration: none;
     color: black;
 }
+
+.list {
+    background-color: 	#4a6741;
+}
+.tab {
+
+  font-weight: bold;
+}
+.tab:hover {
+        z-index: 1;
+        border-radius: 0;
+        background-color: #003366;
+        /* border-color: var(--mantine-color-blue-filled); */
+        color: ivory;
+}

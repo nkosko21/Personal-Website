@@ -43,44 +43,35 @@ export default function Videography() {
     return (
         <div>
             <NavigationBar defaultValue={'videography'}/> 
-            <h1>Videography</h1>
-            <p>This is the videography page</p>
+            <section className='videography-container'>
+                <h1>Personal Projects</h1>
+                <div className='container'>
+                    {videos.map((video) => (
+                    <Card shadow="sm" padding="lg" radius="md" withBorder id={video.id} style={{margin: 10}}>
+                        <Card.Section>
+                            <Image
+                            src={video.image}
+                            height={400 }
+                            alt="Norway"
+                            />
+                        </Card.Section>
 
+                        <Group justify="space-between" mt="md" mb="xs">
+                            <Text fw={500}>{video.title}</Text>
+                        </Group>
 
-            <h1>Projects</h1>
-            <div className='container'>
-                {videos.map((video) => (
-                <Card shadow="sm" padding="lg" radius="md" withBorder id={video.id} style={{margin: 10}}>
-                    <Card.Section>
-                        <Image
-                        src={video.image}
-                        height={400 }
-                        alt="Norway"
-                        />
-                    </Card.Section>
+                        <Text size="sm" c="dimmed">
+                            {video.description}
+                        </Text>
 
-                    <Group justify="space-between" mt="md" mb="xs">
-                        <Text fw={500}>{video.title}</Text>
-                    </Group>
-
-                    <Text size="sm" c="dimmed">
-                        {video.description}
-                    </Text>
-
-                    <a href={video.link} target="_blank">
-                        <Button color="blue" fullWidth mt="md" radius="md">
-                            Watch Video on Instagram
-                        </Button>
-                    </a>
-                </Card>))}
-            </div>
-
-            <h2>DVD Collection (and reviews)</h2>
-
-
-
-
-            <h2>Camera Collection</h2>
+                        <a href={video.link} target="_blank">
+                            <Button color="blue" fullWidth mt="md" radius="md">
+                                Watch Video on Instagram
+                            </Button>
+                        </a>
+                    </Card>))}
+                </div>
+            </section>
         </div>
     );
 }

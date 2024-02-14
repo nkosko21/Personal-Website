@@ -10,14 +10,14 @@ export default function InTheClassroom() {
                 <div className='col'>
                     <h1>Inside The Classroom</h1>
                     <p>
-                        As a third year Computer Science Student, I've taken a variety of difference classes, and here are some of my favourites.
+                        As a third year Computer Science Student, I've taken a variety of different classes ranging from Computer Science to Design.
                         I'm currently taking a Web Development class where I'm learning how to build a full stack web application using React, Node.js, and MongoDB.
-                        I'm also taking a class on the Fundamentals of Computer Science, where I'm learning the building blocks of function oriented languages using DrRacket, 
-                        even building our own programming language using scheme. Some of my other favourite classes include a class on the Fundamentals of Software Engineering, 
+                        I'm also enrolled in a Programming Languages course, where I'm learning the building blocks of function oriented languages using DrRacket, 
+                        even building our own programming language using scheme. My favorite however is Fundamentals of Software Engineering, a course 
                         which covers the software development lifecycle and real world software development standards. 
                     </p>
                     <p>
-                        I've also taken classes on Algorithms, Object Oriented Design, Networks & Distrubuted Systems, Discrete Structures, and Philosiphy in Film.
+                        I've also taken classes on Algorithms, Object Oriented Design, Networks & Distrubuted Systems, Discrete Structures, and Philosophy in Film.
                     </p>
                 </div>
                 <Image

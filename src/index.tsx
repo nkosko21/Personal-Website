@@ -12,7 +12,7 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 import Home from './pages/Home';
-import ProfessionalProjects from './pages/ProffessionalProjects';
+import ProfessionalProjects from './pages/ProfessionalProjects';
 import Videography from './pages/Videography';
 import Photography from './pages/Photography';
 

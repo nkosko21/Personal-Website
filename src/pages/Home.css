@@ -4,9 +4,8 @@
 }
 
 .about-me-section {
-    background-color: #f9f9f9;
     padding: 50px 0;
-  }
+}
   
 .about-me-content {
     max-width: 800px;
@@ -43,6 +42,12 @@ p {
     object-fit: cover; 
 }
 
+.professional-container {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: 	#aea397;
+    margin: 7px;
+}
 .professional-image-text p {
     max-width: 440px;
     font-size: 1rem;

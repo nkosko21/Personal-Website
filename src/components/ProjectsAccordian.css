@@ -1,0 +1,12 @@
+.control:hover {
+    background-color: 'black';
+}
+
+.mantine-Accordion-control {
+    background-color: ivory;
+}
+
+.mantine-Accordion-panel {
+    /* background: linear-gradient(ivory, #e6dfc3); */
+    background-color: ivory;
+}

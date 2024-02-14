@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image } from '@mantine/core';
+import nick_tackle from '../../images/Nick_Tackle.jpg';
 
 
 export default function OutsideTheClassroom() {
@@ -15,17 +16,17 @@ export default function OutsideTheClassroom() {
                     </p>
                     <p>
                         I also founded the 'Rare Fish Enthusiasts', a team where we participate in various sports activities and are 
-                        currently competing in Northeastern Intramural Soccer I run our {<a href='https://www.instagram.com/rarefishenthusiasts/'>Social Media</a>} where I post 
+                        currently competing in Northeastern Intramural Soccer. I run our {<a href='https://www.instagram.com/rarefishenthusiasts/'>Social Media</a>} where I post 
                         various content I make from silly highlight videos to graphics. I also have a {<a href='https://www.instagram.com/7nkfilms/'>Personal Instagram</a>} where
-                        I post my videos and photography.
+                        I post my personal videos and photography.
                     </p>
                     <p>
-                        Finally, I volunteer on weekends as an Assistand Youth Soccer Coach at VOLO Sports, helping underserved kids 5-10 learn the fundamentals of Soccer
+                        Finally, I volunteer on weekends as an Assistand Youth Soccer Coach at VOLO Sports, helping underserved children ages 5-10 learn the fundamentals of Soccer
                         and teamwork.
                     </p>
                 </div>
                 <Image
-                    src={null}
+                    src={nick_tackle}
                     style={{ height: 576, width: 432, margin: 10 }}
                     fallbackSrc="https://placehold.co/600x400?text=Placeholder"
                     radius="md"

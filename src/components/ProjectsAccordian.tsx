@@ -16,8 +16,18 @@ import DistributedKeyValue from '../pages/professional projects/DistributedKeyVa
 import BGPRouter from '../pages/professional projects/BGPRouter';
 import PersonalWebsite from '../pages/professional projects/PersonalWebsite';
 import nick_about from '../images/nick_about.jpg';
+import './ProjectsAccordian.css';
+import FTPClient from '../pages/professional projects/FTPClient';
+import filezilla_logo from '../images/FileZilla_Logo.png'
 
 const projectList = [
+  {
+    id: 'Personal-Website',
+    image: nick_about,
+    label: 'Personal Website',
+    description: 'This Website',
+    content: <PersonalWebsite/>,
+  },
   {
     id: 'be-meal',
     image: beMeal_logo,
@@ -31,13 +41,6 @@ const projectList = [
     label: 'Image Processor',
     description: 'Applies effects on Images',
     content: <ImageProcessor/>,
-  },
-  {
-    id: 'Personal-Website',
-    image: nick_about,
-    label: 'Personal Website',
-    description: 'This Website',
-    content: <PersonalWebsite/>,
   },
   {
     id: 'Kanbas-project',
@@ -74,6 +77,13 @@ const projectList = [
     description: 'Automated Instagram Account to Track Spotify Playlists',
     content: <SpotifyPlaylistTracker/>,
   },
+  {
+    id: 'ftp-client',
+    image: filezilla_logo,
+    label: 'FTP Client',
+    description: 'File Transfer Protocol Client',
+    content: <FTPClient/>
+  },
 ];
 
 interface AccordionLabelProps {
@@ -99,7 +109,7 @@ function AccordionLabel({ label, image, description }: AccordionLabelProps) {
 export default function ProfessionalProjectsAccordian() {
   const items = projectList.map((item) => (
     <Accordion.Item value={item.id} key={item.label}>
-      <Accordion.Control>
+      <Accordion.Control className='control'>
         <AccordionLabel {...item} />
       </Accordion.Control>
       <Accordion.Panel>
