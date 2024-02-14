@@ -1,4 +1,4 @@
-import { Grid, Tooltip } from "@mantine/core";
+import { Affix, Grid, rem, Tooltip, Transition } from "@mantine/core";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import NavigationBar from "../components/NavigationBar";
@@ -17,6 +17,8 @@ import { Carousel } from "@mantine/carousel";
 import InTheClassroom from "./student life carousel/InTheClassroom";
 import OutsideTheClassroom from "./student life carousel/OutsideTheClassroom";
 import InLondon from "./student life carousel/InLondon";
+import { useWindowScroll } from "@mantine/hooks";
+import { IconChevronDown } from "@tabler/icons-react";
 
 
 // export default function Home() {
@@ -65,6 +67,8 @@ import InLondon from "./student life carousel/InLondon";
 
 //Option 2
 function Home() {
+    const [scroll, scrollTo] = useWindowScroll();
+    
   return (
     <div>
         <NavigationBar defaultValue="home"/> 
@@ -75,8 +79,24 @@ function Home() {
                 <p>
                     Hello! I'm Nick, a Computer Science student based in Boston currently studying at Northeastern University. 
                 </p>
+                <br/>
+                <br/>
+                <br/>
             </div>
         </section>
+        <Affix position={{ bottom: 20, right: (window.innerWidth / 2) - 25}}>
+            <Transition transition="slide-up" mounted={scroll.y < 50}>
+            {(transitionStyles) => (
+                // <p>More Info Down Here!</p>
+                <IconChevronDown 
+                    // style={{ width: rem(16), height: rem(16) }} 
+                    size={48}
+                    style={{ ...transitionStyles, justifyContent: 'center'}}
+                />
+            )}
+            </Transition>
+        </Affix>
+        
         <section className="about-me-section">
             <div className="about-me-content" style={{ maxWidth: 'none' }}>
                 <h2>Professional Life</h2>
@@ -93,7 +113,7 @@ function Home() {
                         </p>
                     </div>
                     <div className="col professional-image-text">
-                        <Tooltip label="Me helping one of my students with their assignment">
+                        <Tooltip label="Me helping a student with their assignment">
                             <img className="professional-images" src={nick_showing} alt="Showing Students Curriculum"/>
                         </Tooltip>
                         <p>

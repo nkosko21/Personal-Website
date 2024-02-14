@@ -7,7 +7,6 @@ export default function ProfessionalProjects() {
         <div>
             <NavigationBar defaultValue="professional"/> 
             <h1>Professional Projects</h1>
-            <p>This is the professional projects page</p>
             <PPAccordian /> 
         </div>
     );

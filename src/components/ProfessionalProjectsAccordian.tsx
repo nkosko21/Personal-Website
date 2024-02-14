@@ -6,57 +6,74 @@ import marble_solitaire_icon from '../images/marble_solitaire_icon.png';
 import beMeal_logo from '../images/beMeal_logo.png';
 import distributed_key_logo from '../images/distributed-key_logo.png';
 import bgp_logo from '../images/bgp_logo.webp'
+import Image_Processor_Icon from '../images/Image_Processor_Icon.png';
+import KanbasWebApp from '../pages/professional projects/KanbasWebApp';
+import SpotifyPlaylistTracker from '../pages/professional projects/SpotifyPlaylistTracker';
+import MarbleSolitaireGame from '../pages/professional projects/MarbleSolitaireGame';
+import BeMeal from '../pages/professional projects/BeMeal';
+import ImageProcessor from '../pages/professional projects/ImageProcessor';
+import DistributedKeyValue from '../pages/professional projects/DistributedKeyValue';
+import BGPRouter from '../pages/professional projects/BGPRouter';
+import PersonalWebsite from '../pages/professional projects/PersonalWebsite';
+import nick_about from '../images/nick_about.jpg';
 
 const projectList = [
+  {
+    id: 'be-meal',
+    image: beMeal_logo,
+    label: 'BeMeal',
+    description: 'Food-Sharing Social Media',
+    content: <BeMeal/>,
+  },
+  {
+    id: 'image-processor',
+    image: Image_Processor_Icon,
+    label: 'Image Processor',
+    description: 'Applies effects on Images',
+    content: <ImageProcessor/>,
+  },
+  {
+    id: 'Personal-Website',
+    image: nick_about,
+    label: 'Personal Website',
+    description: 'This Website',
+    content: <PersonalWebsite/>,
+  },
   {
     id: 'Kanbas-project',
     image: canvas_icon,
     label: 'Kanbas Web App',
-    description: 'Making the thing',
-    content: <h1>Kanbas</h1>,
-  },
-  {
-    id: 'spotify-playlist-tracker',
-    image: spotify_icon,
-    label: 'Spotify Playlist Tracker',
-    description: 'tracks the playlist',
-    content: <h2>Spotify</h2>,
+    description: 'Copy of Education Website Canvas',
+    content: <KanbasWebApp/>,
   },
   {
     id: 'marble-solitaire-project',
     image: marble_solitaire_icon,
     label: 'Marble Solitaire Game',
-    description: 'game with marbles',
-    content: <h3>marble</h3>,
-  },
-  {
-    id: 'be-meal',
-    image: beMeal_logo,
-    label: 'BeMeal',
-    description: 'meal Social Media',
-    content: <p>meal</p>,
-  },
-  {
-    id: 'image-processor',
-    image: '',
-    label: 'Image Processor',
-    description: 'processes images',
-    content: <p>image</p>,
+    description: 'A Playable Game of Marble Solitaire',
+    content: <MarbleSolitaireGame/>
   },
   {
     id: 'distributed-key-value-database',
     image: distributed_key_logo,
     label: 'Distributed Key Value Database',
-    description: 'database',
-    content: <p>database</p>,
+    description: 'Distributed Key Value Database',
+    content: <DistributedKeyValue />,
   },
   {
     id: 'bgp-router',
     image: bgp_logo,
     label: 'BGP Router',
-    description: 'router',
-    content: <p>router</p>,
-  }
+    description: 'BGP Router',
+    content: <BGPRouter />,
+  },
+  {
+    id: 'spotify-playlist-tracker',
+    image: spotify_icon,
+    label: 'Spotify Playlist Tracker',
+    description: 'Automated Instagram Account to Track Spotify Playlists',
+    content: <SpotifyPlaylistTracker/>,
+  },
 ];
 
 interface AccordionLabelProps {
