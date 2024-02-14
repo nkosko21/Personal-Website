@@ -26,6 +26,10 @@ h2 {
     margin-bottom: 20px;
 }
 
+h3 {
+    color: #444;
+}
+
 p {
     font-size: 1.2rem;
     line-height: 1.6;
@@ -57,4 +61,13 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+.mantine-Carousel-controls {
+    transition: opacity 150ms ease;
+    opacity: 0;
+  }
+  
+.mantine-Carousel-root:hover .mantine-Carousel-controls {
+    opacity: 1;
 }

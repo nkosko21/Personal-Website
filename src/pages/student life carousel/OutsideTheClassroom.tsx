@@ -23,12 +23,13 @@ export default function OutsideTheClassroom() {
                         and teamwork.
                     </p>
                 </div>
+                {window.innerWidth > 600 &&
                 <Image
                     src={nick_tackle}
                     style={{ height: 576, width: 432, margin: 10 }}
                     fallbackSrc="https://placehold.co/600x400?text=Placeholder"
                     radius="md"
-                />
+                />}
             </div>
         </div>
     );

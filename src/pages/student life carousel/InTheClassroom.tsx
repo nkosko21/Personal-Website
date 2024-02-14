@@ -18,12 +18,13 @@ export default function InTheClassroom() {
                         I've also taken classes on Algorithms, Object Oriented Design, Networks & Distrubuted Systems, Discrete Structures, and Philosophy in Film.
                     </p>
                 </div>
+                {window.innerWidth > 600 &&
                 <Image
                     src={northeastern_classroom}
                     style={{ height: 576, width: 432, margin: 10 }}
                     fallbackSrc="https://placehold.co/600x400?text=Placeholder"
                     radius="md"
-                />
+                />}
             </div>
         </div>
     );

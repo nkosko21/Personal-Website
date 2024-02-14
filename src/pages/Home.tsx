@@ -76,12 +76,14 @@ function Home() {
         <section className="about-me-section" style={backgroundStyle}>
             <div className="about-me-content" style={{ maxWidth: 'none' }}>
                 <h2>Professional Life</h2>
-                <div className="row" style={{ justifyContent: 'center'}}>
+                <div className="row" style={{ justifyContent: 'center', flexWrap: 'wrap', maxWidth: window.innerWidth }}>
                     <div className="col professional-container">
                         <div className="col professional-image-text">
+                            {window.innerWidth > 600 &&
                             <Tooltip label="Me helping a student with their assignment">
                                 <img className="professional-images" src={nick_showing} alt="Showing Students Curriculum"/>
-                            </Tooltip>
+                            </Tooltip>}
+                            <h3 style={{ margin: 0, marginTop: 5 }}>IT Manager</h3>
                             <p>
                                 From April to August of 2023 I Worked as an IT Manager at Digital Ready, a non-profit organization in Boston, MA with the mission to teach
                                 underserved boston youth STEM Curriculum. In this role, I was responsible for teaching the students IT Curriculum, such as Python, Databasing, and Networks.
@@ -90,7 +92,9 @@ function Home() {
                     </div>
                     <div className="col professional-container">
                         <div className="col professional-image-text">
-                            <img className="professional-images" src={SLS_logo} alt="Sitting with Students"/>
+                            {window.innerWidth > 600 &&
+                            <img className="professional-images" src={SLS_logo} alt="Sitting with Students"/>}
+                            <h3 style={{ margin: 0, marginTop: 5 }}>Software Developer</h3>
                             <p>
                                 From September to December of 2023, I worked as a Software Developer at SLS Consulting, LLC. where I designed, developed, tested, 
                                 and maintained internal automation tools using TypeScript, HTML, and Python to streamline and enhance business processes. I deployed and 
@@ -101,9 +105,11 @@ function Home() {
                     </div>
                     <div className="col professional-container">
                         <div className="col professional-image-text">
+                            {window.innerWidth > 600 &&
                             <Tooltip label="Me pictured with the Governer of Rhode Island Dan McKee">
                                 <img className="professional-images" src={nick_shaking_hands} alt="Shaking Hands with the Governer of Rhode Island"/>
-                            </Tooltip>
+                            </Tooltip>}
+                            <h3 style={{ margin: 0, marginTop: 5 }}>Lifeguard/Lifeguard Manager</h3>
                             <p>
                                 During the summers from 2018-2021, I worked as a Lifeguard at Roger Wheeler State Beach in Narragansett, Rhode Island where 
                                 I was responsible for the safety of the patrons at the beach, performing various minor first aids and ocean. The following summer
@@ -122,7 +128,7 @@ function Home() {
                 <br/>
                 <h2>Student Life</h2>
             </div>  
-            <Carousel slideSize="70%" align="center" loop>
+            <Carousel slideSize="70%" align={window.innerWidth < 600 ? "start": "center"} loop slideGap="xl">
                 <Carousel.Slide>
                     <InTheClassroom/>
                 </Carousel.Slide>

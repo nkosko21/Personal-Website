@@ -4,10 +4,14 @@ h1 {
 }
 
 .student-life-container {
-    width: 900px;
-    height: 600px;
-    /* border: 2px solid black; */
-    margin: 10px;
+  width: 900px;
+  /* height: 600px; */
+  /* border: 2px solid black; */
+  margin: 10px;
+  
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 }
 
 .student-life-container p {

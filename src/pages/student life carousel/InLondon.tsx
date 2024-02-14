@@ -20,13 +20,14 @@ export default function InLondon() {
                         documenting my travels on video.
                     </p>
                 </div>
+                {window.innerWidth > 600 &&
                 <Image
                     src={st_pauls}
                     alt="A photo I took of St.Paul's Cathedral"
                     style={{ height: 576, width: 432, margin: 10 }}
                     fallbackSrc="https://placehold.co/600x400?text=Placeholder"
                     radius="md"
-                />
+                />}
             </div>
         </div>
     );

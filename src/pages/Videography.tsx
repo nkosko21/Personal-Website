@@ -43,7 +43,7 @@ export default function Videography() {
         <div>
             <NavigationBar defaultValue={'videography'}/> 
             <section className='videography-container'>
-                <h1>Personal Projects</h1>
+                {/* <h1>Personal Projects</h1> */}
                 <div className='container'>
                     {videos.map((video) => (
                     <Card shadow="sm" padding="lg" radius="md" withBorder id={video.id} style={{margin: 10}}>
