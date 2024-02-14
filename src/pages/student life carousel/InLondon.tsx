@@ -24,6 +24,7 @@ export default function InLondon() {
                     src={st_pauls}
                     alt="A photo I took of St.Paul's Cathedral"
                     style={{ height: 576, width: 'auto', margin: 10 }}
+                    fallbackSrc="https://placehold.co/600x400?text=Placeholder"
                     radius="md"
                 />
             </div>
