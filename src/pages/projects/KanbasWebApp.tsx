@@ -8,7 +8,7 @@ export default function KanbasWebApp() {
             <Image
                 src={kanbas_dashboard}
                 alt="Kanbas Dashboard"
-                style={{ width: '796px', height: '294px'}}
+                style={{ width: window.innerWidth < 600 ? 400: 796, height: window.innerWidth < 600 ? 150:294}}
                 radius="md"
                 
             />

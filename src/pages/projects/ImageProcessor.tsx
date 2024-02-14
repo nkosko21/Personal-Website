@@ -1,12 +1,15 @@
+import { useEffect } from 'react';
 import Image_Processor from '../../images/Image_Processor.png';
 
 export default function ImageProcessor() {
+    useEffect(() => {
+    }, [window.innerWidth]);
     return(
-        <div className='row'>
+        <div className={window.innerWidth < 600 ? "column":"row"}>
             <img 
                 src={Image_Processor} 
                 alt="Image Processor" 
-                style={{ width: 592, height: 550 }}
+                style={{ width: window.innerWidth < 600 ? 400:592, height: window.innerWidth < 600 ? 390: 550 }}
             />
             <p>
                 The Image Processor is a Java Application that implementing using Java's Swing library. It allows the user to upload an image and apply various filters to the image such as blur, sharpen, intensity, and mosaic.

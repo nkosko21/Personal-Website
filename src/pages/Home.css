@@ -21,13 +21,17 @@
     margin: 20px auto;
 }
 
+h1 {
+    color: 	#003366;
+}
+
 h2 {
     font-size: 2.5rem;
     margin-bottom: 20px;
 }
 
 h3 {
-    color: #444;
+    color: 	#330066;
 }
 
 p {

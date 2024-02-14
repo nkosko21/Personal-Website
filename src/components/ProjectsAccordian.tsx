@@ -6,17 +6,17 @@ import beMeal_logo from '../images/beMeal_logo.png';
 import distributed_key_logo from '../images/distributed-key_logo.png';
 import bgp_logo from '../images/bgp_logo.webp'
 import Image_Processor_Icon from '../images/Image_Processor_Icon.png';
-import KanbasWebApp from '../pages/professional projects/KanbasWebApp';
-import SpotifyPlaylistTracker from '../pages/professional projects/SpotifyPlaylistTracker';
-import MarbleSolitaireGame from '../pages/professional projects/MarbleSolitaireGame';
-import BeMeal from '../pages/professional projects/BeMeal';
-import ImageProcessor from '../pages/professional projects/ImageProcessor';
-import DistributedKeyValue from '../pages/professional projects/DistributedKeyValue';
-import BGPRouter from '../pages/professional projects/BGPRouter';
-import PersonalWebsite from '../pages/professional projects/PersonalWebsite';
+import KanbasWebApp from '../pages/projects/KanbasWebApp';
+import SpotifyPlaylistTracker from '../pages/projects/SpotifyPlaylistTracker';
+import MarbleSolitaireGame from '../pages/projects/MarbleSolitaireGame';
+import BeMeal from '../pages/projects/BeMeal';
+import ImageProcessor from '../pages/projects/ImageProcessor';
+import DistributedKeyValue from '../pages/projects/DistributedKeyValue';
+import BGPRouter from '../pages/projects/BGPRouter';
+import PersonalWebsite from '../pages/projects/PersonalWebsite';
 import nick_about from '../images/nick_about.jpg';
 import './ProjectsAccordian.css';
-import FTPClient from '../pages/professional projects/FTPClient';
+import FTPClient from '../pages/projects/FTPClient';
 import filezilla_logo from '../images/FileZilla_Logo.png'
 
 const projectList = [
