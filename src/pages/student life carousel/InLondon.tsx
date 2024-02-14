@@ -6,7 +6,7 @@ import st_pauls from '../../images/st_pauls.jpeg';
 export default function InLondon() {
     return (
         <div className="student-life-container">
-            <div className='row' style={{ justifyContent: 'space-between'}}>
+            <div className='row'>
                 <div className='col'>
                     <h1>In London</h1>
                     <p>
@@ -23,7 +23,7 @@ export default function InLondon() {
                 <Image
                     src={st_pauls}
                     alt="A photo I took of St.Paul's Cathedral"
-                    style={{ height: 576, width: 'auto', margin: 10 }}
+                    style={{ height: 576, width: 432, margin: 10 }}
                     fallbackSrc="https://placehold.co/600x400?text=Placeholder"
                     radius="md"
                 />
