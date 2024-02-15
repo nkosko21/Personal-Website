@@ -8,15 +8,17 @@ import ProfessionalProjects from './pages/ProfessionalProjects';
 import Videography from './pages/Videography';
 import Photography from './pages/Photography';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Contact from './pages/Contact';
 
 function App() {
   return (
-  <div>
+  <div style={{ backgroundColor: 'ivory' }}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/professional" element={<ProfessionalProjects/>}/>
         <Route path="/videography" element={<Videography/>}/>
+        <Route path="/contact" element={<Contact/>}/>
         <Route path="/photography" element={<Photography/>}/>
       </Routes>
     </BrowserRouter>

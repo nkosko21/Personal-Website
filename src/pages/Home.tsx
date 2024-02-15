@@ -1,4 +1,4 @@
-import { Affix, Button, Tooltip, Transition } from "@mantine/core";
+import { Affix, Tooltip, Transition } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import NavigationBar from "../components/NavigationBar";
 import nick_about from '../images/nick_about.jpg';
@@ -19,7 +19,8 @@ function Home() {
     const [scroll, scrollTo] = useWindowScroll();
     
     const [scrollSection, setscrollSection] = useState(0);
-    const element = document.getElementById("professional-title");
+    const professionalTitle = document.getElementById("professional-title");
+    const studentLife = document.getElementById("student-life-title");
 
     useEffect(() => {
         const handleScroll = () => {
@@ -41,12 +42,15 @@ function Home() {
     }, []);
 
     const scrollToProfessional = () => {
-        element!.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (scroll.y < 750) {
+            professionalTitle!.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            studentLife!.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     };
     const backgroundStyle = {
         backgroundColor: scrollSection == 0 ? 'ivory': scrollSection == 1  ? '#d6c8b9' : '#aea397',
         transition: 'background-color 0.3s ease',
-        // padding: '20px',
       };
     
   return (
@@ -64,21 +68,15 @@ function Home() {
                 <br/>
             </div>
         </section>
-        <Affix position={{ bottom: 20, right: (window.innerWidth / 2) - 25}}>
-            <Transition transition="slide-up" mounted={scroll.y < 50}>
+        <Affix position={{ bottom: 5, right: (window.innerWidth / 2) - 25}}>
+            <Transition transition="slide-up" mounted={scroll.y < 50 || (scroll.y > 750 && scroll.y < 850)}>
             {(transitionStyles) => (
-                // <p>More Info Down Here!</p>
-                <Button 
-                    variant="transparent" 
-                    color="black"
+                <IconChevronDown 
+                    // style={{ width: rem(16), height: rem(16) }} 
+                    size={48}
+                    style={{ ...transitionStyles, justifyContent: 'center', cursor: 'pointer'}}
                     onClick={scrollToProfessional}
-                >
-                    <IconChevronDown 
-                        // style={{ width: rem(16), height: rem(16) }} 
-                        size={48}
-                        style={{ ...transitionStyles, justifyContent: 'center'}}
-                    />
-                </Button>
+                />
             )}
             </Transition>
         </Affix>
@@ -93,7 +91,7 @@ function Home() {
                             <Tooltip label="Me helping a student with their assignment">
                                 <img className="professional-images" src={nick_showing} alt="Showing Students Curriculum"/>
                             </Tooltip>}
-                            <h3 style={{ margin: 0, marginTop: 5 }}>IT Manager</h3>
+                            <h3 className="professional-title" style={{ margin: 0, marginTop: 5 }}>IT Manager</h3>
                             <p>
                                 From April to August of 2023 I Worked as an IT Manager at Digital Ready, a non-profit organization in Boston, MA with the mission to teach
                                 underserved boston youth STEM Curriculum. In this role, I was responsible for teaching the students IT Curriculum, such as Python, Databasing, and Networks.
@@ -104,7 +102,7 @@ function Home() {
                         <div className="col professional-image-text">
                             {window.innerWidth > 600 &&
                             <img className="professional-images" src={SLS_logo} alt="Sitting with Students"/>}
-                            <h3 style={{ margin: 0, marginTop: 5 }}>Software Developer</h3>
+                            <h3 className="professional-title" style={{ margin: 0, marginTop: 5 }}>Software Developer</h3>
                             <p>
                                 From September to December of 2023, I worked as a Software Developer at SLS Consulting, LLC. where I designed, developed, tested, 
                                 and maintained internal automation tools using TypeScript, HTML, and Python to streamline and enhance business processes. I deployed and 
@@ -119,7 +117,7 @@ function Home() {
                             <Tooltip label="Me pictured with the Governer of Rhode Island Dan McKee">
                                 <img className="professional-images" src={nick_shaking_hands} alt="Shaking Hands with the Governer of Rhode Island"/>
                             </Tooltip>}
-                            <h3 style={{ margin: 0, marginTop: 5 }}>Lifeguard/Lifeguard Manager</h3>
+                            <h3 className="professional-title" style={{ margin: 0, marginTop: 5 }}>Lifeguard/Lifeguard Manager</h3>
                             <p>
                                 During the summers from 2018-2021, I worked as a Lifeguard at Roger Wheeler State Beach in Narragansett, Rhode Island where 
                                 I was responsible for the safety of the patrons at the beach, performing various minor first aids and ocean. The following summer
@@ -136,7 +134,7 @@ function Home() {
             <div className="about-me-content">
                 <br/>
                 <br/>
-                <h2>Student Life</h2>
+                <h2 id="student-life-title">Student Life</h2>
             </div>  
             <Carousel slideSize="70%" align={window.innerWidth < 600 ? "start": "center"} loop slideGap="xl">
                 <Carousel.Slide>
@@ -150,8 +148,6 @@ function Home() {
                 </Carousel.Slide>
             </Carousel>
         </section>
-
-        
     </div>
   );
 }

@@ -21,7 +21,7 @@
     margin: 20px auto;
 }
 
-h1 {
+.student-life-titles {
     color: 	#003366;
 }
 
@@ -30,7 +30,7 @@ h2 {
     margin-bottom: 20px;
 }
 
-h3 {
+.professional-title {
     color: 	#330066;
 }
 
@@ -74,4 +74,10 @@ p {
   
 .mantine-Carousel-root:hover .mantine-Carousel-controls {
     opacity: 1;
+}
+
+body {
+    background-color: ivory;
+    margin: 0;
+    padding: 0; 
 }

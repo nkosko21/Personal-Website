@@ -6,7 +6,7 @@ export default function OutsideTheClassroom() {
         <div className="student-life-container">
             <div className='row'>
                 <div className='col'>
-                    <h1>Outside The Classroom</h1>
+                    <h1 className='student-life-titles'>Outside The Classroom</h1>
                     <p>
                         Outside the classroom I do a variety of different clubs and personal projects. I was on the Northeastern Club swim team for 3 years,
                         coming .01 seconds away from reaching the National Championships in the 100m freestyle before suffering an injury, requiring surgery and postponing 

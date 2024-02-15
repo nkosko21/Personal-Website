@@ -6,7 +6,7 @@ export default function InTheClassroom() {
         <div className="student-life-container">
             <div className='row'>
                 <div className='col'>
-                    <h1>Inside The Classroom</h1>
+                    <h1 className="student-life-titles">Inside The Classroom</h1>
                     <p>
                         As a third year Computer Science Student, I've taken a variety of different classes ranging from Computer Science to Design.
                         I'm currently taking a Web Development class where I'm learning how to build a full stack web application using React, Node.js, and MongoDB.

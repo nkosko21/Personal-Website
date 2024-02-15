@@ -1,6 +1,6 @@
 import {  Image} from '@mantine/core';
 import './studentLife.css';
-import '../../index.css';
+import '../Home.css';
 import st_pauls from '../../images/st_pauls.jpg';
 
 export default function InLondon() {
@@ -8,7 +8,7 @@ export default function InLondon() {
         <div className="student-life-container">
             <div className='row'>
                 <div className='col'>
-                    <h1>In London</h1>
+                    <h1 className="student-life-titles">In London</h1>
                     <p>
                         In the Fall of my 2021 I spent a semester abroad in London, England with Northeasterns NUin program. 
                         During my time there I took classes on London culture and the Fundamentals of Computer Science, using DrRacket to learn the basics

@@ -1,0 +1,51 @@
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: ivory;
+    /* height: 100vh; */
+}
+
+.get-in-touch-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.circle-image {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 20px auto;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-header {
+    margin: 0;
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 50px;
+    color: 	#330066;
+}
+
+.contact-text {
+    margin: 0;
+    text-align: center;
+    color:#006666;
+}
+
+a {
+    width: fit-content;
+}
+
+a:hover {
+    text-decoration: underline;
+}
