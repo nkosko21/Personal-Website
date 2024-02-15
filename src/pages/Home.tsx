@@ -1,4 +1,4 @@
-import { Affix, Tooltip, Transition } from "@mantine/core";
+import { Affix, Button, Tooltip, Transition } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import NavigationBar from "../components/NavigationBar";
 import nick_about from '../images/nick_about.jpg';
@@ -19,6 +19,7 @@ function Home() {
     const [scroll, scrollTo] = useWindowScroll();
     
     const [scrollSection, setscrollSection] = useState(0);
+    const element = document.getElementById("professional-title");
 
     useEffect(() => {
         const handleScroll = () => {
@@ -39,6 +40,9 @@ function Home() {
         };
     }, []);
 
+    const scrollToProfessional = () => {
+        element!.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
     const backgroundStyle = {
         backgroundColor: scrollSection == 0 ? 'ivory': scrollSection == 1  ? '#d6c8b9' : '#aea397',
         transition: 'background-color 0.3s ease',
@@ -64,18 +68,24 @@ function Home() {
             <Transition transition="slide-up" mounted={scroll.y < 50}>
             {(transitionStyles) => (
                 // <p>More Info Down Here!</p>
-                <IconChevronDown 
-                    // style={{ width: rem(16), height: rem(16) }} 
-                    size={48}
-                    style={{ ...transitionStyles, justifyContent: 'center'}}
-                />
+                <Button 
+                    variant="transparent" 
+                    color="black"
+                    onClick={scrollToProfessional}
+                >
+                    <IconChevronDown 
+                        // style={{ width: rem(16), height: rem(16) }} 
+                        size={48}
+                        style={{ ...transitionStyles, justifyContent: 'center'}}
+                    />
+                </Button>
             )}
             </Transition>
         </Affix>
         
         <section className="about-me-section" style={backgroundStyle}>
             <div className="about-me-content" style={{ maxWidth: 'none' }}>
-                <h2>Professional Life</h2>
+                <h2 id="professional-title">Professional Life</h2>
                 <div className="row" style={{ justifyContent: 'center', flexWrap: 'wrap', maxWidth: window.innerWidth }}>
                     <div className="col professional-container">
                         <div className="col professional-image-text">
