@@ -8,6 +8,9 @@ export default function BeMeal() {
                 BeMeal is a social media platform for foodies. It is a full-stack IOS application that allows users to share pictures of their meals and the respective recipe, 
                 with the social feed resetting daily to make room for the next day's meals. BeMeal was created by me and a colleague
                 and built using Swift and Google Firebase. 
+                <br/>
+                <br/>
+                <a href="https://github.com/nkosko21/BeMeal" target="_blank">Link to GitHub</a>
             </p>
         </div>
     );

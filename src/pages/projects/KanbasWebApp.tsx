@@ -16,6 +16,9 @@ export default function KanbasWebApp() {
                 In my Web Development Class, our semester-long project is to recreate popular education software Canvas, 
                 a website where students can view their grades, assignments, class information, in addition to submitting assignments and taking quizzes, using TypeScript, HTML, CSS, and MongoDB. 
                 Currently, we have only gotten as far as the rough skeleton of the website so it lacks styling.
+                <br/>
+                <br/>
+                <a href="https://github.com/nkosko21/kanbas-react-web-app" target="_blank">Link to GitHub</a>
             </p>
         </div>
     );

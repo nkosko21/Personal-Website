@@ -8,6 +8,9 @@ export default function MarbleSolitaireGame() {
             <p style={{ marginLeft: 15 }}>
                 In my Object Oriented Design class, one of our projects was to implement a Marble Solitaire game using Java, its Swing library, and the Model/View/Controller Pattern. 
                 The game runs in a new window and is tested thoroughly with nearly a thousand lines of code.
+                <br/>
+                <br/>
+                <a href="https://github.com/nkosko21/Marble-Solitaire-Game" target="_blank">Link to GitHub</a>
             </p>
         </div>
     );

@@ -14,6 +14,9 @@ export default function ImageProcessor() {
             <p>
                 The Image Processor is a Java Application that implements Java's Swing library. It allows the user to upload an image and apply various filters to the image such as blur, sharpen, intensity, and mosaic.
                 When an image is uploaded the application also displays a histogram of the different colors (red, green, blue, intensity) that is updated when the image is edited. The edited image can then be saved to the user's local storage.
+                <br/>
+                <br/>
+                <a href="https://github.com/nkosko21/FTP-Client" target="_blank">Link to GitHub</a>
             </p>
         </div>
     );

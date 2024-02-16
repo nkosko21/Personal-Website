@@ -7,6 +7,9 @@ export default function BGPRouter() {
             subnet mask notation and network masks' significance. Utilizing the select() and poll() API functions further enhances the understanding of managing multiple sockets within a single program. 
             Within the provided simulator environment, the BGP router accomplishes essential functions akin to real routers, including accepting route announcements, generating new routes, 
             compressing forwarding tables, and efficiently forwarding data packets from simulated internet users.
+            <br/>
+            <br/>
+            <a href="https://github.com/nkosko21/BGP-Router" target="_blank">Link to GitHub</a>
     
         </p>
     );
