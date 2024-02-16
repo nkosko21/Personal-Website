@@ -10,7 +10,7 @@ export default function InLondon() {
                 <div className='col'>
                     <h1 className="student-life-titles">In London</h1>
                     <p>
-                        In the Fall of my 2021 I spent a semester abroad in London, England with Northeasterns NUin program. 
+                        In the Fall of my 2021 I spent a semester abroad in London, England with Northeastern's NUin program. 
                         During my time there I took classes on London culture and the Fundamentals of Computer Science, using DrRacket to learn the basics
                         of function oriented languages. I was also elected as a Student Coordinator on the Student government board 
                         where I helped organize community events and various administrative tasks.

@@ -10,7 +10,7 @@ export default function OutsideTheClassroom() {
                     <p>
                         Outside the classroom I do a variety of different clubs and personal projects. I was on the Northeastern Club swim team for 3 years,
                         coming .01 seconds away from reaching the National Championships in the 100m freestyle before suffering an injury, requiring surgery and postponing 
-                        any swimming for the forseeable future. 
+                        any swimming for the foreseeable future. 
                     </p>
                     <p>
                         I also founded the 'Rare Fish Enthusiasts', a team where we participate in various sports activities and are 
@@ -19,7 +19,7 @@ export default function OutsideTheClassroom() {
                         I post my personal videos and photography.
                     </p>
                     <p>
-                        Finally, I volunteer on weekends as an Assistand Youth Soccer Coach at VOLO Sports, helping underserved children ages 5-10 learn the fundamentals of Soccer
+                        Finally, I volunteer on weekends as an Assistant Youth Soccer Coach at VOLO Sports, helping underserved children ages 5-10 learn the fundamentals of Soccer
                         and teamwork.
                     </p>
                 </div>

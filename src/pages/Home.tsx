@@ -120,8 +120,8 @@ function Home() {
                             <h3 className="professional-title" style={{ margin: 0, marginTop: 5 }}>Lifeguard/Lifeguard Manager</h3>
                             <p>
                                 During the summers from 2018-2021, I worked as a Lifeguard at Roger Wheeler State Beach in Narragansett, Rhode Island where 
-                                I was responsible for the safety of the patrons at the beach, performing various minor first aids and ocean. The following summer
-                                I returned as a Lifeguard Manager whose responibilities included managing the lifeguard staff, scheduling, training new lifeguards and performing 
+                                I was responsible for the safety of the patrons at the beach, performing various minor first aids and ocean rescues. The following summer
+                                I returned as a Lifeguard Manager whose responsibilities included managing the lifeguard staff, scheduling, training new lifeguards and performing 
                                 life-threatening first-aids and rescues.
                             </p>
                         </div>

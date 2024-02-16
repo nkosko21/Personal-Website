@@ -11,7 +11,7 @@ export default function InTheClassroom() {
                         As a third year Computer Science Student, I've taken a variety of different classes ranging from Computer Science to Design.
                         I'm currently taking a Web Development class where I'm learning how to build a full stack web application using React, Node.js, and MongoDB.
                         I'm also enrolled in a Programming Languages course, where I'm learning the building blocks of function oriented languages using DrRacket, 
-                        even building our own programming language using scheme. My favorite however is Fundamentals of Software Engineering, a course 
+                        even building our own programming language using Scheme. My favorite however is Fundamentals of Software Engineering, a course 
                         which covers the software development lifecycle and real world software development standards. 
                     </p>
                     <p>
