@@ -13,7 +13,7 @@ export default function OutsideTheClassroom() {
                         any swimming for the foreseeable future. 
                     </p>
                     <p>
-                        I also founded the 'Rare Fish Enthusiasts', a team where we participate in various sports activities and are 
+                        I also was a founder of 'Rare Fish Enthusiasts', a team where we participate in various sports activities and are 
                         currently competing in Northeastern Intramural Soccer. I run our {<a href='https://www.instagram.com/rarefishenthusiasts/'>Social Media</a>} where I post 
                         various content I make from silly highlight videos to graphics. I also have a {<a href='https://www.instagram.com/7nkfilms/'>Personal Instagram</a>} where
                         I post my personal videos and photography.
