@@ -14,8 +14,8 @@ export default function OutsideTheClassroom() {
                     </p>
                     <p>
                         I also was a founder of 'Rare Fish Enthusiasts', a team where we participate in various sports activities and are 
-                        currently competing in Northeastern Intramural Soccer. I run our {<a href='https://www.instagram.com/rarefishenthusiasts/'>Social Media</a>} where I post 
-                        various content I make from silly highlight videos to graphics. I also have a {<a href='https://www.instagram.com/7nkfilms/'>Personal Instagram</a>} where
+                        currently competing in Northeastern Intramural Soccer. I run our {<a href='https://www.instagram.com/rarefishenthusiasts/' target="_blank">Social Media</a>} where I post 
+                        various content I make from silly highlight videos to graphics. I also have a {<a href='https://www.instagram.com/7nkfilms/' target="_blank">Personal Instagram</a>} where
                         I post my personal videos and photography.
                     </p>
                     <p>
