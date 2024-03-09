@@ -32,6 +32,9 @@ h2 {
 
 .professional-title {
     color: 	#330066;
+    margin: 2px;
+    font-size: 1.2rem;
+    text-align: center;
 }
 
 p {
@@ -41,8 +44,8 @@ p {
 }
 
 .professional-images {
-    width: 440px;
-    height: 300px;
+    width: 340px;
+    height: 200px;
     margin: 10px;
     margin-bottom: 0;
     border-radius: 5px;
@@ -52,13 +55,29 @@ p {
 
 .professional-container {
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 15px;
     background-color: 	#aea397;
     margin: 7px;
+    transition: box-shadow 0.3s ease;
+    border: 2px solid #958778;
+    height: fit-content;
 }
+
+.professional-container:hover {
+    padding: 5px;
+    border-radius: 15px;
+    background-color: 	#aea397;
+    margin: 7px;
+    box-shadow: 0 0 13px #330066;
+    cursor: pointer;
+    height: fit-content;
+}
+
 .professional-image-text p {
-    max-width: 440px;
-    font-size: 1rem;
+    max-width: 340px;
+    font-size: .8rem;
+    margin: 0;
+    text-align: center;
 }
 
 .student-life-section {
