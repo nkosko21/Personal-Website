@@ -17,7 +17,7 @@ export default function ProfessionalExperience(props: {
 
 
     return(
-        <div className="col professional-container" onClick={() => setOpened(!opened)}>
+        <div className="col professional-container" onClick={() => setOpened(!opened)} title="Click to Expand">
             {opened ? 
                 <div className="col professional-image-text">
                     {window.innerWidth > 600 &&
