@@ -66,7 +66,7 @@ function Home() {
                     <h2>Nicholas Kosko</h2>
                     <img className="profile-image" src={nick_about} alt="Profile" />
                     <p>
-                        Hello! I'm Nick, a Computer Science student based in Boston currently studying at Northeastern University. 
+                        Hello! I'm Nick, a Computer Science & Design student based in Boston currently studying at Northeastern University. 
                     </p>
                     <br/>
                     <br/>
