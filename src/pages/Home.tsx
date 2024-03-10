@@ -89,7 +89,7 @@ function Home() {
         
         <section className="about-me-section" style={backgroundStyle}>
             {/* <div className="about-me-content" style={{ maxWidth: 'none' }}> */}
-                <h2 id="professional-title" style={{ textAlign: "center" }}>Professional Life</h2>
+                <h2 id="professional-title" style={{ textAlign: "center" }}>Professional Experience</h2>
                 <div className="row" style={{ justifyContent: 'center', flexWrap: 'wrap', maxWidth: window.innerWidth }}>
                     <ProfessionalExperience 
                         title={"IT Manager"} 
