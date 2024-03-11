@@ -143,7 +143,7 @@ function Home() {
                 <br/>
                 <h2 id="student-life-title">Student Life</h2>
             </div>  
-            <Carousel slideSize="70%" align={window.innerWidth < 600 ? "start": "center"} loop slideGap="xl">
+            <Carousel slideSize="70%" align={window.innerWidth < 600 ? "center": "center"} loop slideGap="xl">
                 <Carousel.Slide>
                     <InTheClassroom/>
                 </Carousel.Slide>

@@ -9,13 +9,13 @@ export default function InLondon() {
             <div className='row'>
                 <div className='col'>
                     <h1 className="student-life-titles">In London</h1>
-                    <p>
+                    <p style={{textAlign: window.innerWidth < 600 ? 'center': 'start', fontSize: window.innerWidth < 600 ? '.9rem': '1.1rem'}}>
                         In the Fall of my 2021 I spent a semester abroad in London, England with Northeastern's NUin program. 
                         During my time there I took classes on London culture and the Fundamentals of Computer Science, using DrRacket to learn the basics
                         of function oriented languages. I was also elected as a Student Coordinator on the Student government board 
                         where I helped organize community events and various administrative tasks.
                     </p>
-                    <p>
+                    <p style={{textAlign: window.innerWidth < 600 ? 'center': 'start', fontSize: window.innerWidth < 600 ? '.9rem': '1.1rem'}}>
                         I also took the opportunity to travel around Europe, visiting places such as Paris, Edinburgh, Madrid, Barcelona, Geneva, and Aberdeen, 
                         documenting my travels on video.
                     </p>

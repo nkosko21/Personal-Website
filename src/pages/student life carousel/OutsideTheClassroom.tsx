@@ -7,18 +7,18 @@ export default function OutsideTheClassroom() {
             <div className='row'>
                 <div className='col'>
                     <h1 className='student-life-titles'>Outside The Classroom</h1>
-                    <p>
-                        Outside the classroom I do a variety of different clubs and personal projects. I was on the Northeastern Club swim team for 3 years,
+                    <p style={{textAlign: window.innerWidth < 600 ? 'center': 'start', fontSize: window.innerWidth < 600 ? '.9rem': '1.1rem'}}>
+                        I do a variety of different clubs and personal projects. I was on the Northeastern Club swim team for 3 years,
                         coming .01 seconds away from reaching the National Championships in the 100m freestyle before suffering an injury, requiring surgery and postponing 
                         any swimming for the foreseeable future. 
                     </p>
-                    <p>
+                    <p style={{textAlign: window.innerWidth < 600 ? 'center': 'start', fontSize: window.innerWidth < 600 ? '.9rem': '1.1rem'}}>
                         I also was a founder of 'Rare Fish Enthusiasts', a team where we participate in various sports activities and are 
                         currently competing in Northeastern Intramural Soccer. I run our {<a href='https://www.instagram.com/rarefishenthusiasts/' target="_blank">Social Media</a>} where I post 
                         various content I make from silly highlight videos to graphics. I also have a {<a href='https://www.instagram.com/7nkfilms/' target="_blank">Personal Instagram</a>} where
                         I post my personal videos and photography.
                     </p>
-                    <p>
+                    <p style={{textAlign: window.innerWidth < 600 ? 'center': 'start', fontSize: window.innerWidth < 600 ? '.9rem': '1.1rem'}}>
                         Finally, I volunteer on weekends as an Assistant Youth Soccer Coach at VOLO Sports, helping underserved children ages 5-10 learn the fundamentals of Soccer
                         and teamwork.
                     </p>
