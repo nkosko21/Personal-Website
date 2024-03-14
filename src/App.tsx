@@ -4,7 +4,7 @@ import './App.css';
 import NavigationBar from './components/NavigationBar'; 
 import '@mantine/core/styles.css';
 import Home from './pages/Home';
-import ProfessionalProjects from './pages/ProfessionalProjects';
+import ProfessionalProjects from './pages/Projects';
 import Videography from './pages/Videography';
 import Photography from './pages/Photography';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';

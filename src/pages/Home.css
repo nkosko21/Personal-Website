@@ -74,6 +74,17 @@ p {
     height: fit-content;
 }
 
+.professional-container-selected {
+    border: 2px solid #958778;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: 	#aea397;
+    margin: 7px;
+    box-shadow: 0 0 13px #330066;
+    cursor: pointer;
+    height: fit-content;
+}
+
 .professional-image-text p {
     max-width: 340px;
     font-size: .8rem;

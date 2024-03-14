@@ -19,7 +19,7 @@ export default function ProfessionalExperience(props: {
     return(
         <div className="col professional-container" onClick={() => setOpened(!opened)} title="Click to Expand">
             {opened ? 
-                <div className="col professional-image-text">
+                <div className="col professional-image-text" style={{ height: 460, padding: 5 }}>
                     {window.innerWidth > 600 &&
                         <div className="col" style={{alignItems: "flex-start"}}>
                             {props.picture === varsity_tutors_logo ? 

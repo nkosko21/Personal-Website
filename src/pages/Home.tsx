@@ -22,7 +22,6 @@ function Home() {
     const professionalTitle = document.getElementById("professional-title");
     const studentLife = document.getElementById("student-life-title");
     const [isVisible, setIsVisible] = useState(false);
-    console.log(carouselData)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -141,8 +140,8 @@ function Home() {
                 <h2 id="student-life-title">Student Life</h2>
             </div>  
             <Carousel slideSize="70%" align={window.innerWidth < 600 ? "center": "center"} loop slideGap="xl">
-                {carouselData.map((slide) => 
-                    <Carousel.Slide>
+                {carouselData.map((slide, index) => 
+                    <Carousel.Slide key={index}>
                         <div className="student-life-container">
                             <div className='row'>
                                 {slide.body}
