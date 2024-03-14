@@ -1,4 +1,4 @@
-import BeMeal_Feed from '../../images/BeMeal_Feed.png';
+import BeMeal_Feed from '../../../images/BeMeal_Feed.png';
 
 export default function BeMeal() {
     return(

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Image_Processor from '../../images/Image_Processor.png';
+import Image_Processor from '../../../images/Image_Processor.png';
 
 export default function ImageProcessor() {
     useEffect(() => {

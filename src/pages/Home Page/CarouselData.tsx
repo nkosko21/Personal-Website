@@ -1,9 +1,9 @@
 import { Image } from "@mantine/core";
-import northeastern_classroom from '../images/Northeastern_Classroom.jpg';
+import northeastern_classroom from '../../images/Northeastern_Classroom.jpg';
 import './studentLife.css';
 import './Home.css';
-import st_pauls from '../images/st_pauls.jpg';
-import nick_tackle from '../images/Nick_Tackle.jpg';
+import st_pauls from '../../images/st_pauls.jpg';
+import nick_tackle from '../../images/Nick_Tackle.jpg';
 
 const carouselData: any[] = [
     {

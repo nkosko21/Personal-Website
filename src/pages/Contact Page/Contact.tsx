@@ -1,6 +1,6 @@
-import NavigationBar from "../components/NavigationBar";
-import linkedIn_icon from "../images/LinkedIn_Icon.png";
-import email_icon from "../images/Email_Icon.png";
+import NavigationBar from "../../components/NavigationBar";
+import linkedIn_icon from "../../images/LinkedIn_Icon.png";
+import email_icon from "../../images/Email_Icon.png";
 import './Contact.css';
 
 export default function Contact() {

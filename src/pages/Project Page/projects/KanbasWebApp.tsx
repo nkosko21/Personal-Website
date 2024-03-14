@@ -1,6 +1,6 @@
 import { Image } from "@mantine/core"
-import kanbas_dashboard from '../../images/Kanbas_Dashboard.png';
-import '../../index.css'
+import kanbas_dashboard from '../../../images/Kanbas_Dashboard.png';
+import '../../../index.css'
 
 export default function KanbasWebApp() {
     return(

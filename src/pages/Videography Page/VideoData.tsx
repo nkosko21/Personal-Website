@@ -1,7 +1,7 @@
-import RFE_S4_m2 from '../images/RFE_S4_M2.png';
-import RFE_S3 from '../images/RFE_S3.png';
-import GG_2023 from '../images/GG_2023.png';
-import GG_2022 from '../images/GG_2022.jpg';
+import RFE_S4_m2 from '../../images/RFE_S4_M2.png';
+import RFE_S3 from '../../images/RFE_S3.png';
+import GG_2023 from '../../images/GG_2023.png';
+import GG_2022 from '../../images/GG_2022.jpg';
 
 const videoData = [
     {

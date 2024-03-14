@@ -1,8 +1,8 @@
 import { Box, Divider } from "@mantine/core";
 import { IconCornerDownLeft, IconCornerLeftUp, IconCornerRightDown, IconCornerRightUp, IconCornerUpLeftDouble, IconLayoutNavbarExpand } from "@tabler/icons-react";
 import React, { useState } from "react";
-import NavigationBar from "../components/NavigationBar";
-import ProjectMiniList from '../components/ProjectMiniList';
+import NavigationBar from "../../components/NavigationBar";
+import ProjectMiniList from './ProjectMiniList';
 import './Projects.css'
 
 export default function ProfessionalProjects() {

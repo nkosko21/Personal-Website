@@ -1,8 +1,7 @@
-import { Tooltip } from "@mantine/core";
-import varsity_tutors_logo from '../images/varsity_tutors_logo.png';
+import varsity_tutors_logo from '../../images/varsity_tutors_logo.png';
 import React, { useState } from "react";    
 import './Home.css';
-import '../index.css';
+import '../../index.css';
 
 export default function ProfessionalExperience(props: {
     title: string, 

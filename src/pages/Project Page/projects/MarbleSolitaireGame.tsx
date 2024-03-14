@@ -1,5 +1,5 @@
-import MSolitaire_mid from '../../images/MSolitaire_mid.png';
-import '../../index.css'
+import MSolitaire_mid from '../../../images/MSolitaire_mid.png';
+import '../../../index.css'
 
 export default function MarbleSolitaireGame() {
     return (

@@ -1,7 +1,7 @@
 import { Group, Avatar, Text, Accordion, Flex } from '@mantine/core';
-import '../pages/Home.css';
+import '../../pages/Home Page/Home.css';
 import projectData from './ProjectData';
-import './ProjectsAccordian.css';
+import './ProjectMiniList.css';
 
 interface AccordionLabelProps {
   label: string;

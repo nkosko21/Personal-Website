@@ -1,6 +1,6 @@
 import { Card, Image, Text, Badge, Button, Group } from '@mantine/core';
-import NavigationBar from "../components/NavigationBar";
-import '../index.css';
+import NavigationBar from "../../components/NavigationBar";
+import '../../index.css';
 import videoData from './VideoData';
 import './videography.css';
 
