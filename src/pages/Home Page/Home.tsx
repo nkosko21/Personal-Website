@@ -9,7 +9,7 @@ import nick_shaking_hands from '../../images/nick_shaking_hand.jpg';
 import SLS_logo from '../../images/SLS_logo.png';
 import varsity_tutors_logo from '../../images/varsity_tutors_logo.png';
 import '@mantine/carousel/styles.css';
-import { Carousel, CarouselSlide } from "@mantine/carousel";
+import { Carousel } from "@mantine/carousel";
 import { useWindowScroll } from "@mantine/hooks";
 import { IconChevronDown } from "@tabler/icons-react";
 import ProfessionalExperience from "./ProfessionalExperience";
@@ -139,7 +139,13 @@ function Home() {
                 <br/>
                 <h2 id="student-life-title">Student Life</h2>
             </div>  
-            <Carousel slideSize="70%" align={window.innerWidth < 600 ? "center": "center"} loop slideGap="xl">
+            <Carousel 
+                slideSize={window.innerWidth > 600 ? "70%" : '90%'}
+                align={window.innerWidth < 600 ? "center": "center"} 
+                loop 
+                slideGap="xl"
+                withIndicators
+            >
                 {carouselData.map((slide, index) => 
                     <Carousel.Slide key={index}>
                         <div className="student-life-container">

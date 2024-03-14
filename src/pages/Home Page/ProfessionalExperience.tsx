@@ -2,6 +2,7 @@ import varsity_tutors_logo from '../../images/varsity_tutors_logo.png';
 import React, { useState } from "react";    
 import './Home.css';
 import '../../index.css';
+import { useDisclosure } from '@mantine/hooks';
 
 export default function ProfessionalExperience(props: {
     title: string, 
@@ -12,11 +13,11 @@ export default function ProfessionalExperience(props: {
     details: string,
     label?: string,
 }) {
-    const [opened, setOpened] = useState<Boolean>(false);
+    const [opened, {toggle}] = useDisclosure(false);
 
 
     return(
-        <div className="col professional-container" onClick={() => setOpened(!opened)} title="Click to Expand">
+        <div className="col professional-container" onClick={toggle} title="Click to Expand">
             {opened ? 
                 <div className="col professional-image-text" style={{ height: 460, padding: 5 }}>
                     {window.innerWidth > 600 &&
