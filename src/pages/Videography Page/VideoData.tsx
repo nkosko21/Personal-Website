@@ -6,14 +6,14 @@ import GG_2022 from '../../images/GG_2022.jpg';
 const videoData = [
     {
         id: 'rfes4m2',
-        title: 'Rare Fish Enthusiasts Season 4 Matchweek 2',
+        title: 'RFE Season 4',
         image: RFE_S4_m2,
-        description: 'The second matchweek of the fourth season of the Rare Fish Enthusiasts',
+        description: 'Matchweek 2 highlight reel!',
         link: 'https://www.instagram.com/reel/C256Ag8O7tR/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=='
     },
     {
         id: 'rfes3',
-        title: 'Rare Fish Enthusiasts Season 3',
+        title: 'RFE Season 3',
         image: RFE_S3,
         description: 'The third season of the Rare Fish Enthusiasts',
         link: 'https://www.instagram.com/reel/CvoIcfSLxOW/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=='

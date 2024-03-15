@@ -50,7 +50,7 @@ export default function ProjectMiniList(props:
           <div className="professional-image-text">
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: 5 }}>
                 <div className="row" style={{ display: 'flex', alignItems: 'center' }}>
-                  <img className="profile-image" src={item.image} alt="Profile" style={{ width: 45, height: 45, margin: 0, marginRight: 10 }}/>
+                  <img className="profile-image" src={item.image} alt={item.id} style={{ width: 45, height: 45, margin: 0, marginRight: 10 }}/>
                   <div className='col'>
                     <h3 className="professional-title" style={{ fontSize: '1rem' }}>{item.label}</h3>
                     <p>{item.timeframe}</p>

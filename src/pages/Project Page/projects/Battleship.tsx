@@ -7,7 +7,7 @@ export default function Battleship() {
             <p style={{ marginLeft: 10, width: window.innerWidth > 600 ? '60%' : '90%'}}>
                 The Battleship game is a group project for my Fundamentals of Software Engineering Class where me and my group members
                 use a bi-weekly agile workflow to implement a battleship game into Covey.Town, a pre-existing online meeting service. In this project
-                I designed the UI/UX for the game menus and board using Figma, and implemented the typescript frontend/backend stack using a custom REST API.
+                I designed the UI/UX for the game menus and board using Figma, and implemented the typescript React frontend/backend stack using a custom REST API.
             </p>
             <br/>
             {window.innerWidth < 600 && <a href='https://www.figma.com/file/MAeOmyldYqkBfipGMrwzNq/Battleship-menu-and-board?type=design&mode=design&t=u9qLnumIYz1TfbaL-1' target="_blank">Link To Figma wireframe</a>}
