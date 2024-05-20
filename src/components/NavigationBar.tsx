@@ -1,5 +1,5 @@
 import { Tabs } from '@mantine/core';
-import { IconHome, IconCamera, IconFolder, IconDeviceLandlinePhone } from '@tabler/icons-react';
+import { IconHome, IconCamera, IconFolder, IconDeviceLandlinePhone, IconPaperBag } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import './NavigationBar.css';
 
@@ -17,11 +17,14 @@ export default function NavigationBar(props: {defaultValue: string}) {
           <Link to="/">
             <Tabs.Tab value="home" leftSection={<IconHome/>} className='tab'>Home</Tabs.Tab>
           </Link>
-          <Link to="/professional">
+          <Link to="/projects">
             <Tabs.Tab value="professional" leftSection={<IconFolder/>} className='tab'>Projects</Tabs.Tab>
           </Link>
           <Link to='/videography'>
             <Tabs.Tab value="videography" leftSection={<IconCamera/>} className='tab'>Videography</Tabs.Tab>
+          </Link>
+          <Link to='/resume'>
+            <Tabs.Tab value="resume" leftSection={<IconPaperBag/>} className='tab'>Resume</Tabs.Tab>
           </Link>
           <Link to='/contact'>
             <Tabs.Tab value="contact" leftSection={<IconDeviceLandlinePhone/>} className='tab'>Contact</Tabs.Tab>

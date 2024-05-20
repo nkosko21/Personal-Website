@@ -9,6 +9,7 @@ import Videography from './pages/Videography Page/Videography';
 import Photography from './pages/Photography Page/Photography';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Contact from './pages/Contact Page/Contact';
+import InteractableResume from './pages/Interactable Resume Page/InteractableResume';
 
 function App() {
   return (
@@ -16,10 +17,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/professional" element={<ProfessionalProjects/>}/>
+        <Route path="/projects/*" element={<ProfessionalProjects/>}/>
         <Route path="/videography" element={<Videography/>}/>
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/photography" element={<Photography/>}/>
+        <Route path="/resume" element={<InteractableResume />} /> 
       </Routes>
     </BrowserRouter>
   </div>
