@@ -1,8 +1,8 @@
 import varsity_tutors_logo from '../../images/varsity_tutors_logo.png';
-import React, { useState } from "react";    
+import React from "react";    
 import './Home.css';
 import '../../index.css';
-import { useDisclosure } from '@mantine/hooks';
+import { useDisclosure, useHover } from '@mantine/hooks';
 
 export default function ProfessionalExperience(props: {
     title: string, 
@@ -13,12 +13,12 @@ export default function ProfessionalExperience(props: {
     details: string,
     label?: string,
 }) {
-    const [opened, {toggle}] = useDisclosure(false);
+    const { hovered, ref } = useHover();
 
 
     return(
-        <div className="col professional-container" onClick={toggle} title="Click to Expand">
-            {opened ? 
+        <div className="col professional-container" ref={ref}>
+            {hovered ? 
                 <div className="col professional-image-text" style={{ height: 460, padding: 5 }}>
                     {window.innerWidth > 600 &&
                         <div className="col" style={{alignItems: "flex-start"}}>
