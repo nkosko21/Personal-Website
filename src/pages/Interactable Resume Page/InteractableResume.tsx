@@ -30,13 +30,13 @@ export default function InteractableResume() {
     <div className="resume-container">
       <span className="centered-text">
         <h2>Nicholas Kosko</h2>
-        <div>
+        {/* <div>
           <span style={{ fontWeight: 'bold' }}>Objective:</span> Full-Time Software Engineering Internship <span style={{ fontWeight: 'bold' }}>Availibility: </span>
           June - December 2024
           <br/>
-        </div>
+        </div> */}
         <div>
-          <a target='_blank' href={'https://www.nicholaskosko.net/'}>nicholaskosko.net</a> · nickoy7@gmail.com · Boston, MA (Local)
+          nickoy7@gmail.com · Boston, MA (Local)
         </div>
       </span>
         
@@ -104,7 +104,7 @@ export default function InteractableResume() {
           <span>
             <span className="bolded-text">Varsity Tutors</span> <span className="italicized-text">Computer Science Tutor</span>
           </span>
-          Boston, MA Feb. 2024 - Present
+          Boston, MA Feb. 2024 - April 2024
         </span>
         <ul>
         <li style={{ fontFamily: ''}}>
@@ -210,12 +210,13 @@ export default function InteractableResume() {
       <h3>Interests</h3>
       <Divider size='sm' />
       <div>
-        <span className="clickable-text">Soccer</span>{' · '}
-        <span className="clickable-text">Film</span>{' · '}
-        <span className="clickable-text">Design</span>{' · '}
-        <span className="clickable-text">Running</span>{' · '}
-        <span className="clickable-text">Currently Reading: Dune Messiah</span>{' · '}
-        <span className="clickable-text">Currently Watching: Lost</span>
+        {EasyHoverCard(resumeData.soccer.target, resumeData.soccer.dropdown)}
+        {EasyHoverCard(resumeData.film.target, resumeData.film.dropdown)}
+        {EasyHoverCard(resumeData.running.target, resumeData.running.dropdown)}
+        <span>
+          Currently Reading: {EasyHoverCard(resumeData.duneMessiah.target, resumeData.duneMessiah.dropdown)}
+        </span>{' · '}
+        <span>Currently Watching: {EasyHoverCard(resumeData.lost.target, resumeData.lost.dropdown)}</span>
       </div>
 
 

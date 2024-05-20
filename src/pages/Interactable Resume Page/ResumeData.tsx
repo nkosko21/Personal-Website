@@ -31,7 +31,11 @@ const resumeData = {
     target: <span className="clickable-text">Object Oriented Design</span>,
     dropdown:
     <p className="hovercard-text">
-      CS3500 Object-Oriented Design I took during my Spring 2023 semester, and blah blah blah.
+      CS 3500 provided a rigorous approach to object-oriented programming and design, focusing 
+      on abstraction, modularity, and code reuse for large-scale systems. 
+      The course covered key concepts such as objects, classes, methods, interfaces, encapsulation, 
+      polymorphism, and inheritance. I gained hands-on experience with Java tools and techniques for 
+      creating and maintaining applications.
     </p>
   },
   python: {
@@ -197,7 +201,44 @@ const resumeData = {
         I've used Google Firebase for both user authentication and it's real-time database, implementing both using Swift in 
         my <a target='_blank' href='https://github.com/nkosko21'>BeMeal</a> IOS application.
       </p>
-  } 
+  },
+  soccer: {
+    target: <span><span className="clickable-text">Soccer</span>{' · '}</span>,
+    dropdown: 
+      <p className="hovercard-text">
+        I play soccer constantly, from intramurals to occasional sunday league games. I play as a fullback so a right or left defender.
+      </p>
+  },
+  film: {
+    target: <span><span className="clickable-text">Film</span>{' · '}</span>,
+    dropdown: 
+      <p className="hovercard-text">
+        I love watching and making movies! You can find some of the video projects I've made in the videography seciton of the website.
+        My favorite movie is Romeo + Juliet.
+      </p>
+  },
+  running: {
+    target: <span><span className="clickable-text">Running</span>{' · '}</span>,
+    dropdown: 
+      <p className="hovercard-text">
+        I've always loved running as a way to relax and stay in shape, and I love to do races like the 10 mile Blessing of the Fleet
+        in Rhode Island that I do with my friends every summer.
+      </p>
+  },
+  duneMessiah: {
+    target: <span className="clickable-text">Dune Messiah</span>,
+    dropdown: 
+      <p className="hovercard-text">
+        It's really good but it could never hold up to the first book. I'm also super super excited for the Denis Villnueve movie adaptation.
+      </p>
+  },
+  lost: {
+    target: <span className="clickable-text">Lost</span>,
+    dropdown: 
+      <p className="hovercard-text">
+        This is my third rewatch of Lost and I'm on the third season. I pretty much gets worse from this point on but it's so captivating.
+      </p>
+  }
 
 }
 export default resumeData;
