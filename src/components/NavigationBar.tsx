@@ -1,5 +1,5 @@
 import { Tabs } from '@mantine/core';
-import { IconHome, IconCamera, IconFolder, IconDeviceLandlinePhone, IconPaperBag } from '@tabler/icons-react';
+import { IconHome, IconCamera, IconFolder, IconDeviceLandlinePhone, IconPaperBag, Icon123, IconAddressBook, IconFile } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 import './NavigationBar.css';
 
@@ -24,7 +24,7 @@ export default function NavigationBar(props: {defaultValue: string}) {
             <Tabs.Tab value="videography" leftSection={<IconCamera/>} className='tab'>Videography</Tabs.Tab>
           </Link>
           <Link to='/resume'>
-            <Tabs.Tab value="resume" leftSection={<IconPaperBag/>} className='tab'>Resume</Tabs.Tab>
+            <Tabs.Tab value="resume" leftSection={<IconFile/>} className='tab'>Resume</Tabs.Tab>
           </Link>
           <Link to='/contact'>
             <Tabs.Tab value="contact" leftSection={<IconDeviceLandlinePhone/>} className='tab'>Contact</Tabs.Tab>

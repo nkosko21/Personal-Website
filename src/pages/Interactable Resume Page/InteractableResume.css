@@ -1,7 +1,7 @@
 .resume-container {
   width: 1193px;
   height: 1543px;
-  background-color: white;
+  /* background-color: white; */
   display: flex;
   flex-direction: column;
   padding: 60px;

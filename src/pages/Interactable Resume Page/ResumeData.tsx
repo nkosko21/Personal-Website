@@ -238,7 +238,29 @@ const resumeData = {
       <p className="hovercard-text">
         This is my third rewatch of Lost and I'm on the third season. I pretty much gets worse from this point on but it's so captivating.
       </p>
+  },
+  azure: {
+    target: <span><span className="clickable-text">Azure</span>{' | '}</span>,
+    dropdown: 
+      <p className="hovercard-text">
+        I implemeneted the Microsoft Azure API to interact with various microsoft products during my time at SLS Consulting.
+      </p>
+  },
+  express: {
+    target: <span><span className="clickable-text">Express</span>{' | '}</span>,
+    dropdown: 
+      <p className="hovercard-text">
+       I used the Express framework in my Web Development class to develop a backend API to transfer site information with the frontend and database.
+      </p>
+  },
+  leadership: {
+    target: <span className="clickable-text">Leadership</span>,
+    dropdown: 
+      <p className="hovercard-text">
+       Leadership is one of my strongest skills. I am a natural people person and am great at managing and collaborating with others. 
+       I've shown these skills as the captain of my intramural soccer team, lifeguard manager at Roger Wheeler State Beach, and on the executive 
+       board of Northeasterns GEO magazine.
+      </p>
   }
-
 }
 export default resumeData;
