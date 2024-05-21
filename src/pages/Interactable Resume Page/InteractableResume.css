@@ -1,0 +1,61 @@
+.resume-container {
+  width: 1193px;
+  height: 1543px;
+  /* background-color: white; */
+  display: flex;
+  flex-direction: column;
+  padding: 60px;
+}
+
+.resume-image {
+  width: 70%;
+  height: auto;
+  margin-left: 14%;
+}
+
+.centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resume-wrapper {
+  width: fit-content;
+}
+
+.bolded-text {
+  font-weight: bold;
+}
+
+.clickable-text {
+  cursor: pointer;
+  /* border: 1px solid black; */
+  text-shadow: 2px 2px 5px red;
+}
+
+.italicized-text {
+  font-style: italic;
+}
+
+.centered-text {
+  text-align: center;
+}
+
+h2 {
+  margin: 0;
+}
+
+h3 {
+  margin: 0;
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+ul {
+  margin: 0px;
+}
+
+.hovercard-text {
+  font-size: .9rem;
+}
