@@ -2,8 +2,16 @@ import RFE_S4_m2 from '../../images/RFE_S4_M2.png';
 import RFE_S3 from '../../images/RFE_S3.png';
 import GG_2023 from '../../images/GG_2023.png';
 import GG_2022 from '../../images/GG_2022.jpg';
+import aNewEra from '../../images/A_New_Era.png';
 
 const videoData = [
+    {
+        id: 'rfeane',
+        title: 'A New Era',
+        image: aNewEra,
+        description: 'Season 6Matchweek 2 highlight reel!',
+        link: 'https://www.instagram.com/reel/C7my22eOfLp/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
+    },
     {
         id: 'rfes4m2',
         title: 'RFE Season 4',
