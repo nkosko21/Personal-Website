@@ -10,6 +10,7 @@
     flex: row;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin-top: 30px;
 }
 
 .mantine-Card-root {
@@ -32,6 +33,13 @@
     margin-top: 10px;
     font-size: 1.1rem;
     color: #232323;
+}
+
+.card-style {
+    margin: 10;
+    width: 282;
+    height: 310; 
+    /* outline: 10px solid #003366; */
 }
 
 a {

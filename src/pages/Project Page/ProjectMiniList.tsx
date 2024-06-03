@@ -3,26 +3,6 @@ import '../../pages/Home Page/Home.css';
 import projectData from './ProjectData';
 import './ProjectMiniList.css';
 
-interface AccordionLabelProps {
-  label: string;
-  image: string;
-  description: string;
-}
-
-function AccordionLabel({ label, image, description }: AccordionLabelProps) {
-  return (
-    <Group wrap="nowrap">
-      <Avatar src={image} radius="xl" size="lg" />
-      <div>
-        <Text>{label}</Text>
-        <Text size="sm" c="dimmed" fw={400}>
-          {description}
-        </Text>
-      </div>
-    </Group>
-  );
-}
-
 export default function ProjectMiniList(props: 
   { 
     limit: number, 
@@ -36,7 +16,7 @@ export default function ProjectMiniList(props:
       props.handleContent(contentData);
       props.scrollToContent();
     };
-  };
+  }; 
 
   return (
     <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}>
