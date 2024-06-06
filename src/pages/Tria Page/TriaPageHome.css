@@ -1,0 +1,45 @@
+.home {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(170, 104, 184);
+}
+
+.recap-button {
+  cursor: pointer;
+  color: ivory;
+  font-size: 4rem;
+}
+
+.recap-button:hover {
+  text-shadow: 5px 5px red;
+}
+
+.month-button {
+  font-size: 1rem;
+  color: ivory;
+  text-shadow: 2px 2px red;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.month-button-special {
+  font-size: 1.4rem;
+  color: ivory;
+  text-shadow: 2px 2px red;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.month-button:hover {
+  font-size: 1.4rem;
+}
+
+.months-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

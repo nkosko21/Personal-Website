@@ -10,6 +10,7 @@ import Photography from './pages/Photography Page/Photography';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Contact from './pages/Contact Page/Contact';
 import InteractableResume from './pages/Interactable Resume Page/InteractableResume';
+import TriaPageHome from './pages/Tria Page/TriaPageHome';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/photography" element={<Photography/>}/>
         <Route path="/resume" element={<InteractableResume />} /> 
+        <Route path="/tria" element={<TriaPageHome />} />
       </Routes>
     </BrowserRouter>
   </div>
