@@ -17,3 +17,21 @@
 .recap-button:hover {
   text-shadow: 5px 5px red;
 }
+
+.month-button {
+  font-size: 1rem;
+  color: ivory;
+  text-shadow: 2px 2px red;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.month-button:hover {
+  font-size: 1.4rem;
+}
+
+.months-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
