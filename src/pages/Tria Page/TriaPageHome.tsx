@@ -1,5 +1,6 @@
 import { Carousel } from "@mantine/carousel";
 import { FileInput } from "@mantine/core";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import Counter from "./Components/counter";
 import './TriaPageHome.css';
@@ -12,7 +13,8 @@ function TriaPageHome() {
   const [view, switchView] = useState(true);
   const [count, setCount] = useState(0);
   const [month, setMonth] = useState('March');
-  const [year, setYear] = useState(2023);
+  const [year, setYear] = useState('2023');
+  const [allImages, setAllImages] = useState([]);
 
   useEffect(() => {
       const interval = setInterval(() => {
@@ -21,8 +23,56 @@ function TriaPageHome() {
 
       return () => clearInterval(interval);
   }, [count]);
+
+  useEffect(() => {
+    const uploadFile = async () => {
+      if (value) {
+        const formData = new FormData();
+        formData.append('name', value.name);
+        if (value) {
+          formData.append('image', value);
+          formData.append('month', month);
+          formData.append('year', year);
+        }
     
-  const setDate = (month: string, year: number) => {
+        try {
+          const response = await axios.post('http://localhost:2000/upload', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          });
+          console.log(response.data);
+        } catch (error) {
+          console.error('Error uploading the image', error);
+        }  
+      }
+    };
+    uploadFile();
+  }, [value]);
+  
+  useEffect(() => {
+    const fetchImages = async (month: string, year: string) => {
+      try {
+        // const response = await axios.get('https://personal-website-backend-nick-d5f3f69822d1.herokuapp.com/images', {
+        const response = await axios.get('http://localhost:2000/images', {
+          params: {
+            month,
+            year,
+          },
+        });
+        const images = response.data
+        console.log(images)
+        setAllImages(images)
+      } catch (error) {
+        console.error('Error fetching images', error);
+      }
+    };
+    
+    fetchImages(month, year);
+  }, [month, year]);
+
+  
+  const setDate = (month: string, year: string) => {
     setMonth(month);
     setYear(year);
   }
@@ -48,22 +98,32 @@ function TriaPageHome() {
             loop
             align="start"
           >
-            <Carousel.Slide><div style={{width: 950, height: 950}}></div></Carousel.Slide>
-            <Carousel.Slide>2</Carousel.Slide>
-            <Carousel.Slide>3</Carousel.Slide>
+            {allImages.map(image => 
+              <Carousel.Slide><img src={image} /></Carousel.Slide>
+            )}
           </Carousel>
 
           <h2>2023</h2>
           <div className="months-container">
-            {months1.map((month: string) => 
-              <p onClick={() => setDate(month, 2023)} className="month-button">{month}</p>
+            {months1.map((monthInner: string) => 
+              <p 
+                onClick={() => setDate(monthInner, '2023')}
+                className={`month-button${monthInner === month && year === '2023' ? '-special' : ''}`}
+              >
+                {monthInner}
+              </p>
             )}
           </div>
 
           <h2>2024</h2>
           <div className="months-container">
-            {months2.slice(0, 6).map((month: string) => 
-              <p className="month-button">{month}</p>
+            {months2.slice(0, 6).map((monthInner: string) => 
+              <p
+                onClick={() =>setDate(monthInner, '2024')}
+                className={`month-button${monthInner === month && year === '2024' ? '-special' : ''}`}
+              >
+                {monthInner}
+              </p>
             )}
           </div>
 

@@ -26,6 +26,14 @@
   cursor: pointer;
 }
 
+.month-button-special {
+  font-size: 1.4rem;
+  color: ivory;
+  text-shadow: 2px 2px red;
+  margin: 5px;
+  cursor: pointer;
+}
+
 .month-button:hover {
   font-size: 1.4rem;
 }
