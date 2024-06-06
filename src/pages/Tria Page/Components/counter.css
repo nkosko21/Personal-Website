@@ -1,0 +1,41 @@
+.counter {
+  width: 40vw;
+  height: 35vh;
+  background-color: rgb(175, 47, 47);
+  border-radius: 10px;
+  border: 3px solid black;
+}
+
+.we-been {
+  color: ivory;
+  font-weight: 700;
+  font-size: 2rem;
+  margin: 20px 0px 0px 20px; /* up right down left */
+}
+
+.numberTile {
+  width: fit-content;
+  height: fit-content;
+  background-color: ivory;
+  color: black;
+  padding: 10px;
+  font-size: 4rem;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.titleTile {
+  align-items: flex-start;
+  margin-right: 15px;
+  color: ivory;
+}
