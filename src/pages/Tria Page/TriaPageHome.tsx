@@ -99,7 +99,7 @@ function TriaPageHome() {
             align="start"
           >
             {allImages.map(image => 
-              <Carousel.Slide><img src={image} /></Carousel.Slide>
+              <Carousel.Slide><img src={image} style={{ width: 400 }}/></Carousel.Slide>
             )}
           </Carousel>
 
