@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FileInput } from "@mantine/core";
 import axios from "axios";
+import './recap.css';
+import { useNavigate } from "react-router-dom";
 
 const months1 = ['March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const months2 = ['January', 'February', 'March', 'April', 'May', 'June'];
@@ -11,6 +13,7 @@ export default function Recap(){
   const [value, setValue] = useState<File | null>(null);
   const [year, setYear] = useState('2023');
   const [count, setCount] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
       const interval = setInterval(() => {
@@ -76,6 +79,12 @@ export default function Recap(){
   
   return(
     <div className='home'>
+      <h2
+        className='back-button'
+        onClick={() => navigate('/tria')}
+      >
+        Back
+      </h2>
       <img src={currentImage} style={{ width: 400 }}/>
 
       <h2>2023</h2>

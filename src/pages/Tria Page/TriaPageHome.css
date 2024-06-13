@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   background-color: rgb(170, 104, 184);
+  position: relative;
 }
 
 .recap-button {
@@ -16,6 +17,16 @@
 
 .recap-button:hover {
   text-shadow: 5px 5px red;
+}
+
+.date-button {
+  cursor: pointer;
+  color: rgb(232, 232, 135);
+  font-size: 4rem;
+}
+
+.date-button:hover {
+  text-shadow: 5px 5px rgb(255, 77, 0);
 }
 
 .month-button {
