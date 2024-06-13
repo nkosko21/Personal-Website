@@ -1,0 +1,63 @@
+.prize-wheel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(79, 157, 221);
+  height: 100vh;
+}
+
+.wheel {
+  width: 35vw;
+  height: 35vw;
+  border: 5px solid #000;
+  border-radius: 50%;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.segment {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform-origin: left center;
+  overflow: hidden;
+}
+
+.segment .text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.prize {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.back-button {
+  cursor: pointer;
+  color: ivory;
+  font-size: 4rem;
+  position: absolute;
+  cursor: pointer;
+  top: 5%;
+  left: 5%;
+}
+
+.back-button:hover {
+  text-shadow: 5px 5px red;
+}

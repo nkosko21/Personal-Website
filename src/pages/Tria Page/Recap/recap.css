@@ -1,0 +1,13 @@
+.back-button {
+  cursor: pointer;
+  color: ivory;
+  font-size: 4rem;
+  position: absolute;
+  cursor: pointer;
+  top: 5%;
+  left: 5%;
+}
+
+.back-button:hover {
+  text-shadow: 5px 5px red;
+}

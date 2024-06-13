@@ -23,7 +23,7 @@ function App() {
         <Route path="/contact" element={<Contact/>}/>
         <Route path="/photography" element={<Photography/>}/>
         <Route path="/resume" element={<InteractableResume />} /> 
-        <Route path="/tria" element={<TriaPageHome />} />
+        <Route path="/tria/*" element={<TriaPageHome />} />
       </Routes>
     </BrowserRouter>
   </div>
