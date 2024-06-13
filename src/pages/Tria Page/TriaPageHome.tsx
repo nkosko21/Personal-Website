@@ -4,7 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter, HashRouter, Route, Routes, useNavigate } from "react-router-dom";
 import Counter from "./Components/counter";
-import DatePicker from "./DatePicker/DatePicker";
+import DatePicker from "./DatePicker/datePicker";
 import Recap from "./Recap/recap";
 import './TriaPageHome.css';
 
