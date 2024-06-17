@@ -3,6 +3,7 @@ import RFE_S3 from '../../images/RFE_S3.png';
 import GG_2023 from '../../images/GG_2023.png';
 import GG_2022 from '../../images/GG_2022.jpg';
 import aNewEra from '../../images/A_New_Era.png';
+import SACover from '../../images/SA_Cover.png';
 
 const videoData = [
     {
@@ -39,6 +40,13 @@ const videoData = [
         image: GG_2023,
         description: 'The 2023 Lifeguard Games',
         link: 'https://www.instagram.com/reel/CvsId4WAe_3/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=='
+    },
+    {
+        id: 'SymbioticAlignment',
+        title: 'Symbiotic Alignment',
+        image: SACover,
+        description: 'A short film',
+        link: 'https://www.instagram.com/reel/C8Uw9fhM9RM/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=='
     },
 ]
 
