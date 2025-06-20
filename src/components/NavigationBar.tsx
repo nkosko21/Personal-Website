@@ -5,7 +5,7 @@ import './NavigationBar.css';
 
 export default function NavigationBar(props: {defaultValue: string}) {
   return (
-    <div className='nav-bar' >
+    <div className='nav-bar'>
       <Tabs 
         defaultValue={props.defaultValue}
         color='#003366'
