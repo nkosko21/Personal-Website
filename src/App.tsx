@@ -11,7 +11,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Contact from './pages/Contact Page/Contact';
 import InteractableResume from './pages/Interactable Resume Page/InteractableResume';
 import TriaPageHome from './pages/Tria Page/TriaPageHome';
-import TurnTracker from './pages/Turn Program/main';
+import TurnTracker from './pages/Turn Program Page/turnProgramPage';
 
 function App() {
   return (
