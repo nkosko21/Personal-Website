@@ -11,6 +11,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Contact from './pages/Contact Page/Contact';
 import InteractableResume from './pages/Interactable Resume Page/InteractableResume';
 import TriaPageHome from './pages/Tria Page/TriaPageHome';
+import TurnTracker from './pages/Turn Program/main';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/photography" element={<Photography/>}/>
         <Route path="/resume" element={<InteractableResume />} /> 
         <Route path="/tria/*" element={<TriaPageHome />} />
+        <Route path="/turncounter" element={<TurnTracker />} />
       </Routes>
     </BrowserRouter>
   </div>
