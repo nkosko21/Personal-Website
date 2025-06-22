@@ -1,4 +1,4 @@
-import { Button, Card, Drawer, em, Modal } from "@mantine/core";
+import { Button, Card, Checkbox, Drawer, em, Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import React, { useState } from "react";
 import HourGrid from "./HourGrid";
@@ -15,7 +15,6 @@ export default function TurnTracker() {
   const [employeeCounter, setEmployeeCounter] = useState(0);
   const [currentAppointment, setCurrentAppointment] = useState<string>("");
   const [currentEmployee, setCurrentEmployee] = useState<Employee>();
-  const hours = Array.from({ length: 11 }, (_, i) => 9 + i); // 9am to 7pm
 
   const addEmployee = (name: string) => {
     const newEmployee: Employee = {
@@ -148,12 +147,57 @@ export default function TurnTracker() {
     </h1>
   );
 
+  const permissionCheck = (appointment: Appointment) => {
+
+    return (
+      <Checkbox 
+        style={{
+          width:'fit-content',
+          margin: 10,
+        }}
+        checked={employees.find((emp) => emp.id === currentEmployee?.id)?.permissions!.includes(appointment)}
+        key={appointment.id}
+        label={appointment.longName}
+        onChange={(event) => event.currentTarget.checked 
+          ? setEmployees((prev) =>
+              prev.map((e) =>
+                e.id === currentEmployee?.id
+                  ? {
+                      ...e,
+                      permissions: [...currentEmployee.permissions, appointment],
+                    }
+                  : e
+              )
+            )
+          : setEmployees((prev) =>
+              prev.map((e) =>
+                e.id === currentEmployee?.id
+                  ? {
+                      ...e,
+                      permissions: currentEmployee.permissions.filter((appt) => appt.id !== appointment.id),
+                    }
+                  : e
+              )
+            )
+        }
+      />
+    );
+  }  
+
   const employeeDrawer = () => {
-    // const stack = useDrawersStack(['employee-profile']);
   
     return(
-      // <Drawer.Stack>
         <Drawer opened={EmployeeOpened} onClose={closeEmployee} title={<h1>{currentEmployee?.name}</h1>}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
+          }}
+        >
+          {appointmentTypes.map((appt) => permissionCheck(appt))}
+        </div>
         <AppointmentHistory appointments={currentEmployee?.appointments ?? []}/>
         <Button 
           onClick={() => currentEmployee?.clockedIn ? clockOut(currentEmployee.id): clockIn(currentEmployee?.id ?? '')}
@@ -161,9 +205,6 @@ export default function TurnTracker() {
           {currentEmployee?.clockedIn ? "Clock Out": "Clock In"}
         </Button>
         </Drawer>
-  
-      // </Drawer.Stack>
-      
     )
   }
 

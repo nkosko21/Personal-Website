@@ -4,7 +4,7 @@ export default interface Employee {
   id: string;
   name: string;
   clockedIn: boolean;
-  permissions: string[];
+  permissions: Appointment[];
   turnValue: number;
   appointments: Appointment[];
 }
