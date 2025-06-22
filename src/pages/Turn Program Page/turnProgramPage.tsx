@@ -1,4 +1,4 @@
-import { Button, Card, Checkbox, Drawer, em, Modal } from "@mantine/core";
+import { Button, Card, Checkbox, Collapse, Drawer, em, Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import React, { useState } from "react";
 import HourGrid from "./HourGrid";
@@ -11,7 +11,8 @@ export default function TurnTracker() {
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [queue, setQueue] = useState<Employee[]>([]);
   const [appointmentOpened, { open: openAppointment, close: closeAppointment }] = useDisclosure(false);
-  const [EmployeeOpened, { open: openEmployee, close: closeEmployee }] = useDisclosure(false);
+  const [employeeOpened, { open: openEmployee, close: closeEmployee }] = useDisclosure(false);
+  const [permissionOpened, { open: openPermission, close: closePermission }] = useDisclosure(false);
   const [employeeCounter, setEmployeeCounter] = useState(0);
   const [currentAppointment, setCurrentAppointment] = useState<string>("");
   const [currentEmployee, setCurrentEmployee] = useState<Employee>();
@@ -60,6 +61,7 @@ export default function TurnTracker() {
     const appointment = appointmentTypes.find((a) => a.id === currentAppointment);
     if (!appointment) return;
     
+    
     setEmployees((prev) =>
       prev.map((e) =>
         e.id === employee.id
@@ -92,6 +94,15 @@ export default function TurnTracker() {
   }
 
   const turnModal = () => {
+    if (!sortedQueue[employeeCounter]) return
+    const hasPermission = sortedQueue[employeeCounter].permissions?.some(
+      (permission) => permission.id === currentAppointment
+    ) ?? false;
+
+    if (!hasPermission) {
+      setEmployeeCounter(employeeCounter + 1);
+    }
+
     return (
       <div>
         <p 
@@ -108,7 +119,13 @@ export default function TurnTracker() {
           </span> 
           {' '}turn
         </p>
-        <Button onClick={() => employeeCounter + 1 > sortedQueue.length ? setEmployeeCounter(prev => Math.min(prev + 1, sortedQueue.length - 1)) : closeAppointment()}>
+        <Button 
+          onClick={
+            () => employeeCounter + 1 > sortedQueue.length 
+              ? setEmployeeCounter(prev => Math.min(prev + 1, sortedQueue.length - 1)) 
+              : closeAppointment()
+          }
+        >
             Skip
           </Button>
           <Button onClick={() => handleAppointment(sortedQueue[employeeCounter])}>
@@ -146,7 +163,7 @@ export default function TurnTracker() {
       </p>
     </h1>
   );
-
+  
   const permissionCheck = (appointment: Appointment) => {
 
     return (
@@ -164,7 +181,7 @@ export default function TurnTracker() {
                 e.id === currentEmployee?.id
                   ? {
                       ...e,
-                      permissions: [...currentEmployee.permissions, appointment],
+                      permissions: [...e.permissions, appointment],
                     }
                   : e
               )
@@ -174,7 +191,7 @@ export default function TurnTracker() {
                 e.id === currentEmployee?.id
                   ? {
                       ...e,
-                      permissions: currentEmployee.permissions.filter((appt) => appt.id !== appointment.id),
+                      permissions: e.permissions.filter((appt) => appt.id !== appointment.id),
                     }
                   : e
               )
@@ -185,25 +202,27 @@ export default function TurnTracker() {
   }  
 
   const employeeDrawer = () => {
-  
     return(
-        <Drawer opened={EmployeeOpened} onClose={closeEmployee} title={<h1>{currentEmployee?.name}</h1>}>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            justifyContent: 'center'
-          }}
-        >
-          {appointmentTypes.map((appt) => permissionCheck(appt))}
-        </div>
-        <AppointmentHistory appointments={currentEmployee?.appointments ?? []}/>
-        <Button 
-          onClick={() => currentEmployee?.clockedIn ? clockOut(currentEmployee.id): clockIn(currentEmployee?.id ?? '')}
-        >
-          {currentEmployee?.clockedIn ? "Clock Out": "Clock In"}
-        </Button>
+        <Drawer opened={employeeOpened} onClose={() => {closeEmployee(); closePermission()}} title={currentEmployee?.name}>
+          <Button onClick={permissionOpened ? closePermission : openPermission}>View Permissions</Button>
+          <Collapse in={permissionOpened}>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                justifyContent: 'center'
+              }}
+            >
+              {appointmentTypes.map((appt) => permissionCheck(appt))}
+            </div>
+          </Collapse> 
+          <AppointmentHistory appointments={currentEmployee?.appointments ?? []}/>
+          <Button 
+            onClick={() => currentEmployee?.clockedIn ? clockOut(currentEmployee.id): clockIn(currentEmployee?.id ?? '')}
+          >
+            {currentEmployee?.clockedIn ? "Clock Out": "Clock In"}
+          </Button>
         </Drawer>
     )
   }
@@ -215,7 +234,10 @@ export default function TurnTracker() {
     }}>
       <Modal 
         opened={appointmentOpened} 
-        onClose={closeAppointment} 
+        onClose={() => {
+          closeAppointment(); 
+          setEmployeeCounter(0);
+        }} 
         title={turnModalTitle}
       >
         {turnModal()}
