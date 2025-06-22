@@ -5,6 +5,7 @@ import HourGrid from "./HourGrid";
 import Employee from "./Types/Employee";
 import Appointment from "./Types/Appointment";
 import { appointmentTypes } from "./Data/appointmentTypes";
+import AppointmentHistory from "./Components/AppointmentHistory";
 
 export default function TurnTracker() {
   const [employees, setEmployees] = useState<Employee[]>([]);
@@ -66,7 +67,10 @@ export default function TurnTracker() {
           ? {
               ...e,
               turnValue: e.turnValue + appointment.points,
-              appointments: [...(e.appointments || []), {...appointment, timeAssigned: new Date().toLocaleTimeString()}],
+              appointments: [
+                ...(e.appointments || []), 
+                {...appointment, timeAssigned: new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
+              ],
             }
           : e
       )
@@ -115,17 +119,6 @@ export default function TurnTracker() {
     );
   }
 
-  const employeeDrawer = () => {
-
-    return(
-      <Drawer opened={EmployeeOpened} onClose={closeEmployee} title={<h1>{currentEmployee?.name}</h1>}>
-        <Button onClick={() => currentEmployee?.clockedIn ? clockOut(currentEmployee.id): clockIn(currentEmployee?.id ?? '')}>
-          {currentEmployee?.clockedIn ? "Clock Out": "Clock In"}
-        </Button>
-      </Drawer>
-    )
-  }
-
   const handleDeleteAppointment = (appointmentId: string, employeeId: string) => {
     const points = appointmentTypes.find((a) => a.id === currentAppointment)?.points || 0;
     setEmployees((prev) =>
@@ -155,6 +148,25 @@ export default function TurnTracker() {
     </h1>
   );
 
+  const employeeDrawer = () => {
+    // const stack = useDrawersStack(['employee-profile']);
+  
+    return(
+      // <Drawer.Stack>
+        <Drawer opened={EmployeeOpened} onClose={closeEmployee} title={<h1>{currentEmployee?.name}</h1>}>
+        <AppointmentHistory appointments={currentEmployee?.appointments ?? []}/>
+        <Button 
+          onClick={() => currentEmployee?.clockedIn ? clockOut(currentEmployee.id): clockIn(currentEmployee?.id ?? '')}
+        >
+          {currentEmployee?.clockedIn ? "Clock Out": "Clock In"}
+        </Button>
+        </Drawer>
+  
+      // </Drawer.Stack>
+      
+    )
+  }
+
   return (
     <div style={{
       backgroundColor: 'mistyrose',
@@ -178,7 +190,7 @@ export default function TurnTracker() {
             }} 
             style={{ 
               height: '12vh', 
-              width: '12vh',
+              width: '18vh',
               margin: '1vh',
             }}
           >
