@@ -90,7 +90,9 @@ export default function TurnTracker() {
   }
 
   const turnModal = () => {
-    if (!sortedQueue[employeeCounter]) return
+    console.log(sortedQueue)
+    console.log(employeeCounter)
+    if (!sortedQueue[employeeCounter] || !currentAppointment) return
     const hasPermission = sortedQueue[employeeCounter].permissions?.some(
       (permission) => permission.id === currentAppointment
     );
@@ -270,6 +272,7 @@ export default function TurnTracker() {
                 gradient={a.gradient}
                 onClick={() => handleChoice(a.id)} 
                 className="appointment-button"
+                key={a.id}
               >
                 <p style={{fontSize: '1.5rem', color: 'white'}}>{a.shortName}</p>
                 {/* <p style={{fontSize: '.5rem',}}>{a.longName}</p> */}
@@ -292,6 +295,7 @@ export default function TurnTracker() {
                   openEmployee();
                 }}
                 className="employee-button"
+                key={e.id}
               >
                 {e.name}
               </Button>

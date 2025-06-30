@@ -14,7 +14,7 @@ export default function HourGrid(props :
 
   const getAppointments = (employee: Employee) => {
     return(
-      <tr>
+      <tr key={employee.id}>
         <td className="hour-cell body-cell">
           <div className='employee-title'>
             {employee.name}
@@ -60,7 +60,7 @@ export default function HourGrid(props :
       <table className="hour-grid-table">
         <tbody>
           {sortedEmployeeList.length > 0
-            ? sortedEmployeeList.map((employee) => (
+            ? sortedEmployeeList.reverse().map((employee) => (
                 getAppointments(employee)
             ))
             : getAppointments({id: '0', name: '', clockedIn: false, permissions: [], turnValue: 0, appointments: []})

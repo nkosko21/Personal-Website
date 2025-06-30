@@ -22,7 +22,7 @@
   overflow-y: scroll;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;   /* <- Use flex-start for natural overflow */
+  justify-content: center;   /* <- Use flex-start for natural overflow */
   max-height: 52vh;
 
   .appointment-button {
