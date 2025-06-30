@@ -1,4 +1,4 @@
-import { Button, Card, Checkbox, Collapse, Drawer, em, Modal } from "@mantine/core";
+import { Button, Checkbox, Collapse, Drawer, em, Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import React, { useState } from "react";
 import HourGrid from "./HourGrid";
@@ -6,16 +6,17 @@ import Employee from "./Types/Employee";
 import Appointment from "./Types/Appointment";
 import { appointmentTypes } from "./Data/appointmentTypes";
 import AppointmentHistory from "./Components/AppointmentHistory";
+import './TurnProgramPage.css';
 
 export default function TurnTracker() {
   const [employees, setEmployees] = useState<Employee[]>([]);
-  const [queue, setQueue] = useState<Employee[]>([]);
   const [appointmentOpened, { open: openAppointment, close: closeAppointment }] = useDisclosure(false);
   const [employeeOpened, { open: openEmployee, close: closeEmployee }] = useDisclosure(false);
   const [permissionOpened, { open: openPermission, close: closePermission }] = useDisclosure(false);
   const [employeeCounter, setEmployeeCounter] = useState(0);
   const [currentAppointment, setCurrentAppointment] = useState<string>("");
   const [currentEmployee, setCurrentEmployee] = useState<Employee>();
+  const sortedQueue: Employee[] = [...employees].sort((a, b) => a.turnValue - b.turnValue);
 
   const addEmployee = (name: string) => {
     const newEmployee: Employee = {
@@ -37,10 +38,6 @@ export default function TurnTracker() {
         e.id === id ? { ...e, clockedIn: true, turnValue: 0 } : e
       )
     );
-    const employee = employees.find((e) => e.id === id);
-    if (employee && !queue.some((q) => q.id === id)) {
-      setQueue([...queue, { ...employee, clockedIn: true, turnValue: 0 }]);
-    }
   };
 
   const clockOut = (id: string) => {
@@ -51,10 +48,7 @@ export default function TurnTracker() {
         e.id === id ? { ...e, clockedIn: false, turnValue: 0 } : e
       )
     );
-    setQueue(queue.filter((e) => e.id !== id));
   };
-
-  const sortedQueue = [...queue].sort((a, b) => a.turnValue - b.turnValue);
 
   const handleAppointment = (employee: Employee) => {
     if (sortedQueue.length === 0) return;
@@ -76,13 +70,6 @@ export default function TurnTracker() {
           : e
       )
     );
-    setQueue((prev) =>
-      prev.map((e) =>
-        e.id === employee.id
-          ? { ...e, turnValue:  e.turnValue + appointment.points}
-          : e
-      )
-    );
 
     setEmployeeCounter(0);
     closeAppointment();
@@ -92,12 +79,21 @@ export default function TurnTracker() {
     setCurrentAppointment(appointmentId);
     openAppointment();
   }
+  
+  const skipAppointment = () => {
+    if (employeeCounter + 1 >= sortedQueue.length) {
+      closeAppointment();
+      setEmployeeCounter(0);
+    } else {
+      setEmployeeCounter(prev => prev + 1);
+    }
+  }
 
   const turnModal = () => {
     if (!sortedQueue[employeeCounter]) return
     const hasPermission = sortedQueue[employeeCounter].permissions?.some(
       (permission) => permission.id === currentAppointment
-    ) ?? false;
+    );
 
     if (!hasPermission) {
       setEmployeeCounter(employeeCounter + 1);
@@ -120,34 +116,35 @@ export default function TurnTracker() {
           {' '}turn
         </p>
         <Button 
-          onClick={
-            () => employeeCounter + 1 > sortedQueue.length 
-              ? setEmployeeCounter(prev => Math.min(prev + 1, sortedQueue.length - 1)) 
-              : closeAppointment()
-          }
+          onClick={skipAppointment}
         >
-            Skip
-          </Button>
-          <Button onClick={() => handleAppointment(sortedQueue[employeeCounter])}>
-            Take
-          </Button>
+          Skip
+        </Button>
+        <Button onClick={() => handleAppointment(sortedQueue[employeeCounter])}>
+          Take
+        </Button>
       </div>
     );
   }
 
-  const handleDeleteAppointment = (appointmentId: string, employeeId: string) => {
-    const points = appointmentTypes.find((a) => a.id === currentAppointment)?.points || 0;
+  const handleDeleteAppointment = (appointment: Appointment, employeeId: string) => {
+    const points = appointmentTypes.find((a) => a.id === appointment.id)?.points || 0;
     setEmployees((prev) =>
       prev.map((e) =>
         e.id === employeeId
           ? {
               ...e,
               turnValue: e.turnValue - points,
-              appointments: e.appointments.filter((a) => a.id !== appointmentId),
+              appointments: e.appointments.filter((a) => a !== appointment),
             }
           : e
       )
     );
+  }
+
+  const handleSwapAppointment = (appointment: Appointment) => {
+    setCurrentAppointment(appointment.id);
+    openAppointment();
   }
 
   const turnModalTitle = (
@@ -202,8 +199,30 @@ export default function TurnTracker() {
   }  
 
   const employeeDrawer = () => {
+    const employeeTitle = (
+      <span
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-evenly',
+          width: 'max-content'
+        }}
+      >
+        <h1 style={{fontSize: '2rem'}}>
+          {currentEmployee?.name}
+        </h1>
+        <Button 
+          onClick={() => currentEmployee?.clockedIn ? clockOut(currentEmployee.id): clockIn(currentEmployee?.id ?? '')}
+          style={{margin: 0, marginLeft: '1vw'}}
+          color={currentEmployee?.clockedIn ? "#C94C4C" : "#81B29A"}
+        >
+          {currentEmployee?.clockedIn ? "Clock Out": "Clock In"}
+        </Button>
+      </span>
+    );
     return(
-        <Drawer opened={employeeOpened} onClose={() => {closeEmployee(); closePermission()}} title={currentEmployee?.name}>
+        <Drawer opened={employeeOpened} onClose={() => {closeEmployee(); closePermission()}} title={employeeTitle}>
           <Button onClick={permissionOpened ? closePermission : openPermission}>View Permissions</Button>
           <Collapse in={permissionOpened}>
             <div
@@ -218,20 +237,12 @@ export default function TurnTracker() {
             </div>
           </Collapse> 
           <AppointmentHistory appointments={currentEmployee?.appointments ?? []}/>
-          <Button 
-            onClick={() => currentEmployee?.clockedIn ? clockOut(currentEmployee.id): clockIn(currentEmployee?.id ?? '')}
-          >
-            {currentEmployee?.clockedIn ? "Clock Out": "Clock In"}
-          </Button>
         </Drawer>
     )
   }
 
   return (
-    <div style={{
-      backgroundColor: 'mistyrose',
-      height: '100vh'
-    }}>
+    <div className='turn-program-container'>
       <Modal 
         opened={appointmentOpened} 
         onClose={() => {
@@ -243,48 +254,51 @@ export default function TurnTracker() {
         {turnModal()}
       </Modal>
       {employeeDrawer()}
-      <div>
-        <h2 className="text-xl font-bold">Employees</h2>
-        {employees.map((e) => (
+      <div style={{display: 'flex', flexDirection: 'row'}}>
+        <div className="main-tables">
+          <HourGrid 
+            employeeList={employees} 
+            handleDeleteAppointment={handleDeleteAppointment} 
+            handleSwapAppointment={handleSwapAppointment}
+          />
+        </div>
+        <div className="buttons-container">
+          <div className='appointment-types-container'>
+            {appointmentTypes.map((a) => (
+              <Button 
+                variant="gradient"
+                gradient={a.gradient}
+                onClick={() => handleChoice(a.id)} 
+                className="appointment-button"
+              >
+                <p style={{fontSize: '1.5rem', color: 'white'}}>{a.shortName}</p>
+                {/* <p style={{fontSize: '.5rem',}}>{a.longName}</p> */}
+              </Button>
+            ))}
+          </div>
           <Button 
-            onClick={() => {
-              setCurrentEmployee(e);
-              openEmployee();
-            }} 
-            style={{ 
-              height: '12vh', 
-              width: '18vh',
-              margin: '1vh',
-            }}
+            color ='#BFA2DB' 
+            onClick={() => addEmployee(prompt("Employee name:") || "")}
           >
-            {e.name}
+            <p style={{color: '#F1F1F1'}}>
+              Add Employee
+            </p>
           </Button>
-        ))}
-        <Button onClick={() => addEmployee(prompt("Employee name:") || "")}>Add Employee</Button>
+          <div className="employees-container">
+            {employees.map((e) => (
+              <Button 
+                onClick={() => {
+                  setCurrentEmployee(e);
+                  openEmployee();
+                }}
+                className="employee-button"
+              >
+                {e.name}
+              </Button>
+            ))}
+          </div>
+        </div>
       </div>
-
-      <div 
-        style={{ 
-          display: "flex", 
-          flexDirection: 'row', 
-          flexWrap: 'wrap'
-        }}
-      >
-        <h2 className="text-xl font-bold">Appointments</h2>
-        {appointmentTypes.map((a) => (
-          <Button 
-            onClick={() => handleChoice(a.id)} 
-            style={{ 
-              height: '12vh', 
-              width: '12vh',
-              margin: '1vh',
-            }}
-          >
-            {a.shortName}
-          </Button>
-        ))}
-      </div>
-      {HourGrid(employees, handleDeleteAppointment)}
     </div>
   );
 }

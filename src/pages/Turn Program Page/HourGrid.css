@@ -1,28 +1,31 @@
 .hour-grid-container {
-  overflow-x: auto;
+  overflow-x: auto;       /* allow internal scrolling */
+  width: 100%;            /* don't exceed parent width */
+  max-width: 90vw;       /* don't allow scrolling past the viewport */
   padding: 1rem;
+  box-sizing: border-box; /* ensure padding doesn't add extra width */
+  color: #F1F1F1;
 }
 
 .hour-grid-table {
   border-collapse: collapse;
   table-layout: fixed;
-  width: max-content;
+  width: max-content;     /* fine, this just means content controls table width */
 }
 
 .hour-cell {
   width: 15vh;
   height: 15vh;
   text-align: center;
-  border: 1px solid #ccc;
+  border: 1px solid #5E5B6A;
 }
 
 .header-cell {
-  background-color: #f2f2f2;
   font-weight: bold;
 }
 
 .body-cell {
-  background-color: #fff;
+  background-color: #393646;
   transition: background-color 0.2s ease;
 }
 

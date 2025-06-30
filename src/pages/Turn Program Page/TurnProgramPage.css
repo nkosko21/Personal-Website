@@ -1,0 +1,49 @@
+.turn-program-container {
+  font-family: 'Poppins', sans-serif;
+  background-color: #2E2E2E;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+.main-tables {
+  overflow-x: hidden;        /* This div isn't the one that scrolls */
+  width: 73%;
+  max-width: 64vw;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 36vw;
+  padding: 1rem;
+}
+
+.appointment-types-container {
+  overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;   /* <- Use flex-start for natural overflow */
+  max-height: 52vh;
+
+  .appointment-button {
+    height: 9vh;
+    width: 30%;
+    margin: .25rem;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.employees-container {
+  max-height: 40vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow: scroll;
+
+  .employee-button {
+    height: 11vh;
+    width: 45%;
+    margin: .5rem;
+  }
+}
