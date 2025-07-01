@@ -159,4 +159,18 @@ export const appointmentTypes: Appointment[] = [
     longName: "Wax",
     turns: 0, // Find Out
   },
+  {
+    id: crypto.randomUUID(),
+    shortName: '+H',
+    longName: 'Plus Half Turn',
+    turns: .5,
+    gradient: {from: 'gray', to: 'gray', deg: 45}
+  },
+  {
+    id: crypto.randomUUID(),
+    shortName: '+F',
+    longName: 'Plus Full Turn',
+    turns: 1,
+    gradient: {from: 'gray', to: 'gray', deg: 45}
+  }
 ]

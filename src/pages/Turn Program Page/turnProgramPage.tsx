@@ -1,4 +1,4 @@
-import { Button, Checkbox, Collapse, Drawer, em, Modal } from "@mantine/core";
+import { Button, Checkbox, Collapse, Drawer, em, Modal, Select } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import React, { useState } from "react";
 import HourGrid from "./HourGrid";
@@ -7,6 +7,8 @@ import Appointment from "./Types/Appointment";
 import { appointmentTypes } from "./Data/appointmentTypes";
 import AppointmentHistory from "./Components/AppointmentHistory";
 import './TurnProgramPage.css';
+import TurnModal from "./Components/TurnModal";
+import MinusModal from "./Components/MinusModal";
 
 export default function TurnTracker() {
   const [employees, setEmployees] = useState<Employee[]>([]);
@@ -18,13 +20,17 @@ export default function TurnTracker() {
   const [currentEmployee, setCurrentEmployee] = useState<Employee>();
   const sortedQueue: Employee[] = [...employees]
   .filter(emp => emp.clockedIn)
+  .map(emp => ({
+    ...emp,
+    turnValue: Math.floor(emp.turnValue),
+  }))
   .sort((a, b) => {
     if (a.turnValue !== b.turnValue) {
       return a.turnValue - b.turnValue;
     }
 
-    const aTime = new Date(a.LastClockIn).getTime();
-    const bTime = new Date(b.LastClockIn).getTime();
+    const aTime = new Date(a.LastClockIn ?? '').getTime();
+    const bTime = new Date(b.LastClockIn ?? '').getTime();
     return aTime - bTime;
   });
 
@@ -36,7 +42,6 @@ export default function TurnTracker() {
       permissions: [],
       turnValue: 0,
       appointments: [],
-      LastClockIn: new Date()
     };
     setEmployees([...employees, newEmployee]);
   };
@@ -98,64 +103,6 @@ export default function TurnTracker() {
     } else {
       setEmployeeCounter(prev => prev + 1);
     }
-  }
-
-  const turnModal = () => {
-    if (!sortedQueue[employeeCounter] || !currentAppointment) return
-    const hasPermission = sortedQueue[employeeCounter].permissions?.some(
-      (permission) => permission.id === currentAppointment
-    );
-
-    if (!hasPermission) {
-      setEmployeeCounter(employeeCounter + 1);
-    }
-
-    return (
-      <div>
-        <p 
-          style={{ 
-            fontSize: '1.2rem',
-            margin: 0,
-            marginTop: '10px',
-            color: '#F1F1F1'
-          }}
-        >
-          It is{' '}
-          <span 
-            style={{ fontWeight:'bold' }}
-          >
-            {sortedQueue.length > 0 ? sortedQueue[employeeCounter].name: ''}'s
-          </span> 
-          {' '}turn
-        </p>
-        <br/>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            marginBottom: '10px',
-          }}
-        >
-          <Button 
-            onClick={skipAppointment}
-            color='#EF4444'
-            radius='md'
-            style={{width: '30%', height: '8vh', fontSize: '1.3rem'}}
-          >
-            Skip
-          </Button>
-          <Button 
-            onClick={() => handleAppointment(sortedQueue[employeeCounter])}
-            color='#10B981'  
-            radius='md'
-            style={{width: '30%', height: '8vh', fontSize: '1.3rem'}}
-          >
-            Take
-          </Button>
-        </div>
-      </div>
-    );
   }
 
   const handleDeleteAppointment = (appointment: Appointment, employeeId: string) => {
@@ -234,19 +181,31 @@ export default function TurnTracker() {
   }  
 
   const employeeDrawer = () => {
+    const shortTime = currentEmployee?.LastClockIn?.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+    
     const employeeTitle = (
       <span
         style={{
           display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-evenly',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
           width: 'max-content'
         }}
       >
         <h1 style={{fontSize: '3rem'}}>
           {currentEmployee?.name}
         </h1>
+        {currentEmployee?.LastClockIn && (
+          <p
+            style={{ fontSize: '1rem', color: 'rgb(204, 204, 204)', margin: 0 }}
+          >
+            {`Clocked in at ${shortTime}`}
+          </p>
+        )}
       </span>
     );
 
@@ -307,6 +266,14 @@ export default function TurnTracker() {
     setCurrentEmployee(employee);
     openEmployee();
   }
+  
+  const handleMinusModal = (emp: string, amount: number) => {
+    setEmployees(prev => 
+      prev.map(prevEmp => 
+        prevEmp.name === emp 
+        ? {...prevEmp, turnValue: prevEmp.turnValue + amount}
+        : prevEmp));
+  }
 
   return (
     <div className='turn-program-container'>
@@ -318,7 +285,25 @@ export default function TurnTracker() {
         }} 
         title={turnModalTitle}
       >
-        {turnModal()}
+        {appointmentTypes
+          .filter(a => a.shortName === '+H' || a.shortName === '+F')
+          .map(a => a.id)
+          .some(a => a === currentAppointment)
+            ? <MinusModal 
+                employees={employees} 
+                handleMinusModal={handleMinusModal}
+                currentAppointment={currentAppointment}
+                closeModal={closeAppointment}
+              />
+            : <TurnModal 
+                sortedQueue={sortedQueue} 
+                employeeCounter={employeeCounter} 
+                setEmployeeCounter={setEmployeeCounter} 
+                currentAppointment={currentAppointment} 
+                handleAppointment={handleAppointment} 
+                skipAppointment={skipAppointment} 
+              />
+        }
       </Modal>
       {employeeDrawer()}
       <div style={{display: 'flex', flexDirection: 'row'}}>

@@ -11,7 +11,11 @@ export default function HourGrid(props :
     handleEmployeeClick: any,
   }) {
   const currentEmployees = [...props.employeeList].filter(emp => emp.clockedIn);
-  const sortedEmployeeList = [...currentEmployees].sort((a, b) => a.turnValue - b.turnValue);
+  const sortedEmployeeList = [...currentEmployees].sort((a, b) => {
+    const aTime = new Date(a.LastClockIn ?? '').getTime();
+    const bTime = new Date(b.LastClockIn ?? '').getTime();
+    return aTime - bTime;
+  });
 
   const getAppointments = (employee: Employee) => {
     return(
@@ -86,7 +90,7 @@ export default function HourGrid(props :
       <table className="hour-grid-table">
         <tbody>
           {sortedEmployeeList.length > 0
-            ? sortedEmployeeList.reverse().map((employee) => (
+            ? sortedEmployeeList.map((employee) => (
                 getAppointments(employee)
             ))
             : getAppointments({id: '0', name: '', clockedIn: false, permissions: [], turnValue: 0, appointments: [], LastClockIn: new Date()})
