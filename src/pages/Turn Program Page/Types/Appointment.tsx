@@ -7,4 +7,5 @@ export default interface Appointment {
   turns: number;
   timeAssigned?: string;
   gradient?: Gradient
+  request?: boolean
 }

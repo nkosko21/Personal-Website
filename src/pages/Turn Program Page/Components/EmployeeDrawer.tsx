@@ -3,7 +3,7 @@ import { Employee } from "../Types/Employee";
 import AppointmentHistory from "./AppointmentHistory";
 import PermissionCheck from "./PermissionCheck";
 import { appointmentTypes } from "../Data/appointmentTypes";
-import { IconCheck, IconClockHour2, IconEdit } from "@tabler/icons-react";
+import { IconCheck, IconEdit } from "@tabler/icons-react";
 import { useState } from "react";
 import './EmployeeDrawer.css'
 

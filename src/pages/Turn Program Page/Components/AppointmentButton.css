@@ -1,0 +1,7 @@
+.appointment-button {
+  height: 9vh;
+  width: 30%;
+  margin: .25rem;
+  flex-direction: column; 
+  position: relative;
+}

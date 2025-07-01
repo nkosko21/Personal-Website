@@ -16,7 +16,7 @@ export default function RequestModal(props:
     if (!selectedEmployee) return
     const employee = props.employees.find(e => e.name === selectedEmployee)
 
-    props.handleRequestModal(employee, selectedAppointment);
+    props.handleRequestModal(employee, selectedAppointment, true);
     props.closeModal();
   }
 

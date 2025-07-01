@@ -8,6 +8,7 @@ import { appointmentTypes } from "./Data/appointmentTypes";
 import TurnModal from "./Components/TurnModal";
 import EmployeeDrawer from "./Components/EmployeeDrawer";
 import './TurnProgramPage.css'
+import AppointmentButton from "./Components/AppointmentButton";
 
 export default function TurnTracker() {
   const [employees, setEmployees] = useState<Employee[]>([]);
@@ -17,21 +18,8 @@ export default function TurnTracker() {
   const [employeeCounter, setEmployeeCounter] = useState(0);
   const [currentAppointment, setCurrentAppointment] = useState<string>("");
   const [currentEmployee, setCurrentEmployee] = useState<Employee>();
-  const sortedQueue: Employee[] = 
-    employees.filter(emp => emp.clockedIn)
-    .map(emp => ({
-      ...emp,
-      turnValue: Math.floor(emp.turnValue),
-    }))
-    .sort((a, b) => {
-      if (a.turnValue !== b.turnValue) {
-        return a.turnValue - b.turnValue;
-      }
-
-      const aTime = new Date(a.lastClockIn ?? '').getTime();
-      const bTime = new Date(b.lastClockIn ?? '').getTime();
-      return aTime - bTime;
-    });
+  const [multiSelectMode, setMultiSelectMode] = useState<boolean>(false);
+  const [multiSelectQueue, setMultiselectQueue] = useState<string[]>([]);
 
   const addEmployee = (name: string, password: string) => {
     const newEmployee: Employee = {
@@ -47,7 +35,7 @@ export default function TurnTracker() {
   };
 
 
-  const handleChoice = (appointmentId: string) => {
+  const handleSingleAppointment = (appointmentId: string) => {
     setCurrentAppointment(appointmentId);
     openAppointment();
   }
@@ -85,6 +73,12 @@ export default function TurnTracker() {
         : prevEmp));
   }
 
+  const handleMultiSubmit = () => {
+    multiSelectQueue.map(appointment => handleSingleAppointment(appointment));
+    setMultiselectQueue([]);
+    setMultiSelectMode(false);
+  }
+
   return (
     <div className='turn-program-container'>
       <TurnModal 
@@ -120,21 +114,13 @@ export default function TurnTracker() {
         <div className="buttons-container">
           <div className='appointment-types-container'>
             {appointmentTypes.map((a) => (
-              <Button 
-                variant="gradient"
-                gradient={a.gradient}
-                // color='#C9A26D'
-                onClick={() => handleChoice(a.id)} 
-                className="appointment-button"
-                key={a.id}
-                radius='xs'
-              >
-                <span style={{display: 'flex', flexDirection: 'column'}}>
-                  <p style={{fontSize: '1.5rem', fontWeight: 'bolder', marginBottom: '-10px'}}>{a.shortName}</p>
-                  <p style={{fontSize: '.5rem', marginBottom: '-3px'}}>{a.longName}</p>
-                  <p style={{fontSize: '.5rem',}}>{a.turns}{` turn${a.turns === 1 ? '' : 's'}`}</p>
-                </span>
-              </Button>
+              <AppointmentButton 
+                appointment={a} 
+                handleSingleAppointment={handleSingleAppointment}
+                multiSelectQueue={multiSelectQueue}
+                multiSelectMode={multiSelectMode}
+                setMultiSelectQueue={setMultiselectQueue}
+              />
             ))}
           </div>
           <div className='settings-container'>
@@ -146,6 +132,19 @@ export default function TurnTracker() {
             >
               <p>
                 Add Employee
+              </p>
+            </Button>
+            <Button 
+              onClick={
+                multiSelectMode 
+                ? () => handleMultiSubmit()
+                : () => setMultiSelectMode(true)}
+              radius='md'
+              className="settings-button"
+              color="#4A6FA5"
+            >
+              <p>
+                {multiSelectMode ? 'Submit' : 'Multi-Select'}
               </p>
             </Button>
           </div>

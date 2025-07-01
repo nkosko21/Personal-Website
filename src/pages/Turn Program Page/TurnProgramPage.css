@@ -30,6 +30,8 @@
   margin-bottom: 20px;
   border: 5px solid #666;
   border-radius: var(--mantine-radius-xs);
+  display: flex;
+  justify-content: space-around;
 
   .settings-button {
     height: 100%;
@@ -46,12 +48,6 @@
   padding: 5px;
   border: 5px solid #666;
   border-radius: var(--mantine-radius-xs);
-
-  .appointment-button {
-    height: 9vh;
-    width: 30%;
-    margin: .25rem;
-  }
 }
 
 .employees-container {

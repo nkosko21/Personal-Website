@@ -55,7 +55,7 @@ export default function TurnModal(props: {
     </h1>
   );
 
-  const handleAppointment = (employee: Employee, appointment?: string) => {
+  const handleAppointment = (employee: Employee, appointment?: string, request?: boolean) => {
     const appt = appointment 
       ? appointmentTypes.find(a => a.longName === appointment) 
       : appointmentTypes.find((a) => a.id === props.currentAppointment);
@@ -67,9 +67,9 @@ export default function TurnModal(props: {
         e.id === employee.id
           ? {
               ...e,
-              turnValue: e.turnValue + appt.turns,
+              turnValue: e.turnValue + (request ? .5 :appt.turns),
               appointments: [
-                {...appt, timeAssigned: new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })},
+                {...appt, timeAssigned: new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }), request},
                 ...(e.appointments || []),
               ],
             }

@@ -15,11 +15,10 @@
 
 .clock-button {
   margin: 0;
-  margin-left: 1vw;
   width: 12vw; 
   height: 8vh;
   font-size: 1.3rem;
   position: absolute;
   top: 0;
-  right: 0;
+  right: 10vw;
 }

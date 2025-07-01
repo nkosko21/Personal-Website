@@ -39,11 +39,18 @@ export default function HourGrid(props :
                 key={i}
                 style={{
                   background: `linear-gradient(45deg, ${employeeAppointments[i].gradient?.from}, ${employeeAppointments[i].gradient?.to})`,
+                  boxShadow: employeeAppointments[i].request ? 'inset 0 0 0 20px brown': ''
                 }}
               >
               <Popover position="top" withArrow >
                 <Popover.Target>
-                  <p style={{fontWeight: 'bold', fontSize: '1rem'}}>
+                  <p 
+                    style={{
+                      fontWeight: 'bold', 
+                      fontSize: '1rem', 
+                      color: ['M', 'PW'].some(a => a === employeeAppointments[i].shortName) ? '#5E5B6A' : '#F1F1F1'
+                    }}
+                  >
                     {employeeAppointments[i].longName}
                     <br/>
                     {`(${employeeAppointments[i].shortName})`}
