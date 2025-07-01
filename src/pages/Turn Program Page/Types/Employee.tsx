@@ -7,4 +7,5 @@ export default interface Employee {
   permissions: Appointment[];
   turnValue: number;
   appointments: Appointment[];
+  LastClockIn: Date;
 }

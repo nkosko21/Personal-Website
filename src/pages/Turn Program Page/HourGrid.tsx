@@ -89,7 +89,7 @@ export default function HourGrid(props :
             ? sortedEmployeeList.reverse().map((employee) => (
                 getAppointments(employee)
             ))
-            : getAppointments({id: '0', name: '', clockedIn: false, permissions: [], turnValue: 0, appointments: []})
+            : getAppointments({id: '0', name: '', clockedIn: false, permissions: [], turnValue: 0, appointments: [], LastClockIn: new Date()})
         }
         </tbody>
       </table>

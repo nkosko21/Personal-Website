@@ -16,7 +16,18 @@ export default function TurnTracker() {
   const [employeeCounter, setEmployeeCounter] = useState(0);
   const [currentAppointment, setCurrentAppointment] = useState<string>("");
   const [currentEmployee, setCurrentEmployee] = useState<Employee>();
-  const sortedQueue: Employee[] = [...employees].filter(emp => emp.clockedIn).sort((a, b) => a.turnValue - b.turnValue);
+  const sortedQueue: Employee[] = [...employees]
+  .filter(emp => emp.clockedIn)
+  .sort((a, b) => {
+    if (a.turnValue !== b.turnValue) {
+      return a.turnValue - b.turnValue;
+    }
+
+    // Fallback: compare lastClockedIn
+    const aTime = new Date(a.LastClockIn).getTime();
+    const bTime = new Date(b.LastClockIn).getTime();
+    return aTime - bTime; // earlier date = longer ago = comes first
+  });
 
   const addEmployee = (name: string) => {
     const newEmployee: Employee = {
@@ -26,6 +37,7 @@ export default function TurnTracker() {
       permissions: [],
       turnValue: 0,
       appointments: [],
+      LastClockIn: new Date()
     };
     setEmployees([...employees, newEmployee]);
   };
@@ -35,7 +47,7 @@ export default function TurnTracker() {
 
     setEmployees((prev) =>
       prev.map((e) =>
-        e.id === id ? { ...e, clockedIn: true, turnValue: 0 } : e
+        e.id === id ? { ...e, clockedIn: true, turnValue: 0, LastClockIn: new Date() } : e
       )
     );
   };
