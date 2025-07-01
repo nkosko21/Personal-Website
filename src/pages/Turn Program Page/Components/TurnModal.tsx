@@ -3,6 +3,8 @@ import { appointmentTypes } from "../Data/appointmentTypes";
 import MinusModal from "./MinusModal";
 import AppointmentModal from "./AppointmentModal";
 import {Employee} from "../Types/Employee";
+import RequestModal from "./RequestModal";
+import Appointment from "../Types/Appointment";
 
 export default function TurnModal(props: {
   appointmentOpened: boolean,
@@ -61,9 +63,11 @@ export default function TurnModal(props: {
     }
   }
 
-  const handleAppointment = (employee: Employee) => {
-    const appointment = appointmentTypes.find((a) => a.id === props.currentAppointment);
-    if (!appointment) return;
+  const handleAppointment = (employee: Employee, appointment?: string) => {
+    const appt = appointment 
+      ? appointmentTypes.find(a => a.longName === appointment) 
+      : appointmentTypes.find((a) => a.id === props.currentAppointment);
+    if (!appt) return;
     
     
     props.setEmployees((prev: Employee[]) =>
@@ -71,10 +75,10 @@ export default function TurnModal(props: {
         e.id === employee.id
           ? {
               ...e,
-              turnValue: e.turnValue + appointment.turns,
+              turnValue: e.turnValue + appt.turns,
               appointments: [
                 ...(e.appointments || []), 
-                {...appointment, timeAssigned: new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
+                {...appt, timeAssigned: new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
               ],
             }
           : e
@@ -104,14 +108,23 @@ export default function TurnModal(props: {
               currentAppointment={props.currentAppointment}
               closeModal={props.closeAppointment}
             />
-          : <AppointmentModal 
-              sortedQueue={getSortedQueue()} 
-              employeeCounter={props.employeeCounter} 
-              setEmployeeCounter={props.setEmployeeCounter} 
-              currentAppointment={props.currentAppointment} 
-              handleAppointment={handleAppointment} 
-              skipAppointment={skipAppointment} 
-            />
+          : appointmentTypes
+            .filter(a => a.shortName == 'RQ')
+            .map(a => a.id)
+            .some(a => a === props.currentAppointment)
+            ? <RequestModal 
+                employees={props.employees} 
+                handleRequestModal={handleAppointment} 
+                closeModal={props.closeAppointment}
+                />
+            : <AppointmentModal 
+                sortedQueue={getSortedQueue()} 
+                employeeCounter={props.employeeCounter} 
+                setEmployeeCounter={props.setEmployeeCounter} 
+                currentAppointment={props.currentAppointment} 
+                handleAppointment={handleAppointment} 
+                skipAppointment={skipAppointment} 
+              />
       }
     </Modal>
     )

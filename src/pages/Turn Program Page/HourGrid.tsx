@@ -18,6 +18,7 @@ export default function HourGrid(props :
   });
 
   const getAppointments = (employee: Employee) => {
+    const employeeAppointments = employee.appointments
     return(
       <tr key={employee.id}>
         <td 
@@ -32,24 +33,24 @@ export default function HourGrid(props :
           </div>
         </td>
         {Array.from({ length: 15 }, (_, i) => (
-          i < employee.appointments.length 
+          i < employeeAppointments.length 
             ? <td 
                 className="hour-cell body-cell" 
                 key={i}
                 style={{
-                  background: `linear-gradient(45deg, ${employee.appointments[i].gradient?.from}, ${employee.appointments[i].gradient?.to})`,
+                  background: `linear-gradient(45deg, ${employeeAppointments[i].gradient?.from}, ${employeeAppointments[i].gradient?.to})`,
                 }}
               >
               <Popover position="top" withArrow >
                 <Popover.Target>
                   <p style={{fontWeight: 'bold', fontSize: '1rem'}}>
-                    {employee.appointments[i].longName}
+                    {employeeAppointments[i].longName}
                     <br/>
-                    {`(${employee.appointments[i].shortName})`}
+                    {`(${employeeAppointments[i].shortName})`}
                   </p>
                 </Popover.Target>
                 <Popover.Dropdown bg='#4A4553' bd='2px solid #5E5B6A'>
-                  <span className='appointment-time-subtitle'>{employee.appointments[i].timeAssigned ?? ''}</span>
+                  <span className='appointment-time-subtitle'>{employeeAppointments[i].timeAssigned ?? ''}</span>
                   <div
                     style={{
                       display: 'flex',
@@ -58,7 +59,7 @@ export default function HourGrid(props :
                   >
                     <Button 
                       onClick={() => 
-                        props.handleDeleteAppointment(employee.appointments[i], employee.id)
+                        props.handleDeleteAppointment(employeeAppointments[i], employee.id)
                       }
                       color='#EF4444'
                       style={{margin: 0, marginTop: 5}}
@@ -68,8 +69,8 @@ export default function HourGrid(props :
                     <div style={{width: '10px'}}/>
                     <Button 
                       onClick={() => {
-                        props.handleSwapAppointment(employee.appointments[i], employee.id);
-                        props.handleDeleteAppointment(employee.appointments[i], employee.id);
+                        props.handleSwapAppointment(employeeAppointments[i], employee.id);
+                        props.handleDeleteAppointment(employeeAppointments[i], employee.id);
                       }}
                       color='#10B981'
                       style={{margin: 0, marginTop: 5}}

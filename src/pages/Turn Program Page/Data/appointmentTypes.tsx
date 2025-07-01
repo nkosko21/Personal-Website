@@ -80,13 +80,6 @@ export const appointmentTypes: Appointment[] = [
   },
   {
     id: crypto.randomUUID(),
-    shortName: "AF",
-    longName: "Acrylic Fill",
-    turns: .5,
-    gradient: {from: 'purple', to: 'purple', deg: 45}
-  },
-  {
-    id: crypto.randomUUID(),
     shortName: "KM",
     longName: "Kid's Gel Manicure",
     turns: .5,
