@@ -1,0 +1,24 @@
+.employee-header {
+  font-size: 3rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 6vh;
+}
+
+.icons {
+  width: 36px;
+  height: 36px;
+  margin-left: 10px;
+}
+
+.clock-button {
+  margin: 0;
+  margin-left: 1vw;
+  width: 25%; 
+  height: 8vh;
+  font-size: 1.3rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

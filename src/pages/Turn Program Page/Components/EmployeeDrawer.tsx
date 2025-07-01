@@ -1,26 +1,55 @@
-import { Button, Collapse, Drawer } from "@mantine/core";
+import { Button, Collapse, Drawer, TextInput } from "@mantine/core";
 import { Employee } from "../Types/Employee";
 import AppointmentHistory from "./AppointmentHistory";
 import PermissionCheck from "./PermissionCheck";
 import { appointmentTypes } from "../Data/appointmentTypes";
+import { IconCheck, IconClockHour2, IconEdit } from "@tabler/icons-react";
+import { useState } from "react";
+import './EmployeeDrawer.css'
 
-export default function  employeeDrawer(props: 
+export default function EmployeeDrawer(props: 
   {
     currentEmployee?: Employee,
     employees: Employee[],
+    setEmployees: any,
     employeeOpened: boolean,
     permissionOpened: boolean,
     setCurrentEmployee: any,
-    setEmployees: any,
     closeEmployee: any,
     closePermission: any,
     openPermission: any,
   }){
+    const [editValue, setEditValue] = useState(props.currentEmployee?.name);
+    const [isEdit, setIsEdit] = useState<boolean>(false);
     const shortTime = props.currentEmployee?.lastClockIn?.toLocaleTimeString("en-US", {
       hour: "numeric",
       minute: "2-digit",
       hour12: true,
     });
+    
+    const handleSaveEdit = () => {
+      props.setEmployees((prev: Employee[]) => 
+        prev.map(e => e.id === props.currentEmployee?.id
+          ? {
+            ...e,
+            name: editValue,
+          }
+          : e
+        ));
+      props.setCurrentEmployee({...props.currentEmployee, name: editValue})
+      setIsEdit(false);
+    }
+
+    const clockButton = (
+      <Button 
+        onClick={() => props.currentEmployee?.clockedIn ? clockOut(props.currentEmployee.id): clockIn(props.currentEmployee?.id ?? '')}
+        color={props.currentEmployee?.clockedIn ? "#C94C4C" : "#81B29A"}
+        radius='xl'
+        className="clock-button"
+      >
+        {props.currentEmployee?.clockedIn ? "Clock Out": "Clock In"}
+      </Button>
+      );
     
     const employeeTitle = (
       <span
@@ -28,11 +57,39 @@ export default function  employeeDrawer(props:
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
-          width: 'max-content'
+          position: 'relative',
+          width: '200%'
         }}
       >
-        <h1 style={{fontSize: '3rem'}}>
-          {props.currentEmployee?.name}
+        <h1 className="employee-header">
+          {isEdit 
+          ? (
+          <>
+            <TextInput
+              value={editValue}
+              style={{marginLeft: '-3px'}}
+              size='lg'
+              radius='md'
+              variant='filled'
+              onChange={(event) => setEditValue(event.currentTarget.value)}
+            />
+            <IconCheck 
+              onClick={handleSaveEdit} 
+              className="icons"
+              color="#81B29A"
+            />
+          </>
+          ) : (
+            <>
+              {props.currentEmployee?.name}
+              <IconEdit 
+                className="icons"
+                style={{marginTop: '10px'}}
+                onClick={() => setIsEdit(true)}
+                color="#4A6FA5"
+              />
+            </>
+          )}
         </h1>
         {props.currentEmployee?.lastClockIn && (
           <p
@@ -41,6 +98,7 @@ export default function  employeeDrawer(props:
             {`Clocked in at ${shortTime}`}
           </p>
         )}
+        {clockButton}
       </span>
     );
 
@@ -71,9 +129,12 @@ export default function  employeeDrawer(props:
         onClose={() => {
           props.closeEmployee(); 
           props.closePermission();
+          setIsEdit(false);
+          setEditValue(props.currentEmployee?.name);
         }} 
         title={employeeTitle}
         size='lg'
+        withCloseButton={false}
       >
         <Button 
           onClick={props.permissionOpened ? props.closePermission : props.openPermission}
@@ -82,20 +143,6 @@ export default function  employeeDrawer(props:
           style={{width: '40%', height: '8vh', fontSize: '1.3rem'}}
         >
           View Permissions
-        </Button>
-        <Button 
-          onClick={() => props.currentEmployee?.clockedIn ? clockOut(props.currentEmployee.id): clockIn(props.currentEmployee?.id ?? '')}
-          color={props.currentEmployee?.clockedIn ? "#C94C4C" : "#81B29A"}
-          radius='md'
-          style={{
-            margin: 0, 
-            marginLeft: '1vw', 
-            width: '40%', 
-            height: '8vh', 
-            fontSize: '1.3rem'
-          }}
-        >
-          {props.currentEmployee?.clockedIn ? "Clock Out": "Clock In"}
         </Button>
         <Collapse 
           in={props.permissionOpened}
