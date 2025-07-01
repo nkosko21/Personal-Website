@@ -16,7 +16,7 @@ export default function AppointmentHistory({ appointments }: { appointments: App
   });
 
   return (
-    <Table>
+    <Table style={{fontSize: '1.1rem'}}>
       <Table.Thead>
         <Table.Tr>
           <Table.Th>Time Assigned</Table.Th>

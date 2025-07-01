@@ -129,7 +129,7 @@ export default function TurnTracker() {
           <Button 
             onClick={skipAppointment}
             color='#EF4444'
-            // className='appointment-choice'
+            radius='md'
             style={{width: '30%', height: '8vh', fontSize: '1.3rem'}}
           >
             Skip
@@ -137,6 +137,7 @@ export default function TurnTracker() {
           <Button 
             onClick={() => handleAppointment(sortedQueue[employeeCounter])}
             color='#10B981'  
+            radius='md'
             style={{width: '30%', height: '8vh', fontSize: '1.3rem'}}
           >
             Take
@@ -229,11 +230,13 @@ export default function TurnTracker() {
           width: 'max-content'
         }}
       >
-        <h1 style={{fontSize: '2rem'}}>
+        <h1 style={{fontSize: '3rem'}}>
           {currentEmployee?.name}
         </h1>
       </span>
     );
+
+
     return(
         <Drawer 
           opened={employeeOpened} 
@@ -242,19 +245,27 @@ export default function TurnTracker() {
             closePermission();
           }} 
           title={employeeTitle}
+          size='lg'
         >
           <Button 
             onClick={permissionOpened ? closePermission : openPermission}
             color='#4A6FA5'
             radius='md'
+            style={{width: '40%', height: '8vh', fontSize: '1.3rem'}}
           >
             View Permissions
           </Button>
           <Button 
             onClick={() => currentEmployee?.clockedIn ? clockOut(currentEmployee.id): clockIn(currentEmployee?.id ?? '')}
-            style={{margin: 0, marginLeft: '1vw'}}
             color={currentEmployee?.clockedIn ? "#C94C4C" : "#81B29A"}
             radius='md'
+            style={{
+              margin: 0, 
+              marginLeft: '1vw', 
+              width: '40%', 
+              height: '8vh', 
+              fontSize: '1.3rem'
+            }}
           >
             {currentEmployee?.clockedIn ? "Clock Out": "Clock In"}
           </Button>
@@ -272,6 +283,7 @@ export default function TurnTracker() {
               {appointmentTypes.map((appt) => permissionCheck(appt))}
             </div>
           </Collapse> 
+          <br/>
           <AppointmentHistory appointments={currentEmployee?.appointments ?? []}/>
         </Drawer>
     )
