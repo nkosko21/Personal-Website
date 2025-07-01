@@ -57,6 +57,7 @@
 }
 
 .employees-container {
+  min-height: 29vh;
   max-height: 40vh;
   display: flex;
   flex-wrap: wrap;

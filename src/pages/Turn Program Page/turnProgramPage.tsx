@@ -23,10 +23,9 @@ export default function TurnTracker() {
       return a.turnValue - b.turnValue;
     }
 
-    // Fallback: compare lastClockedIn
     const aTime = new Date(a.LastClockIn).getTime();
     const bTime = new Date(b.LastClockIn).getTime();
-    return aTime - bTime; // earlier date = longer ago = comes first
+    return aTime - bTime;
   });
 
   const addEmployee = (name: string) => {
