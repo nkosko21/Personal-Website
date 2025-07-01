@@ -33,7 +33,7 @@ export default function TurnTracker() {
       return aTime - bTime;
     });
 
-  const addEmployee = (name: string) => {
+  const addEmployee = (name: string, password: string) => {
     const newEmployee: Employee = {
       id: crypto.randomUUID(),
       name,
@@ -41,6 +41,7 @@ export default function TurnTracker() {
       permissions: [],
       turnValue: 0,
       appointments: [],
+      password
     };
     setEmployees([...employees, newEmployee]);
   };
@@ -138,7 +139,7 @@ export default function TurnTracker() {
           </div>
           <div className='settings-container'>
             <Button 
-              onClick={() => addEmployee(prompt("Employee name:") || "")}
+              onClick={() => addEmployee(prompt("Employee name:") || "", prompt("Password") || '')}
               radius='md'
               className="settings-button"
               color="#4A6FA5"

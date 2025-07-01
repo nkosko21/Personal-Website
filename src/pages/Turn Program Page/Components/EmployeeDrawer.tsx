@@ -107,6 +107,7 @@ export default function EmployeeDrawer(props:
     );
 
     const clockIn = (id: string) => {
+      if (prompt('Enter Password') !== props.currentEmployee?.password) return
       if (props.currentEmployee) props.setCurrentEmployee({...props.currentEmployee, clockedIn: true})
 
       props.setEmployees((prev: Employee[]) =>
@@ -117,6 +118,7 @@ export default function EmployeeDrawer(props:
     };
 
     const clockOut = (id: string) => {
+      if (prompt('Enter Password') !== props.currentEmployee?.password) return
       if (props.currentEmployee) props.setCurrentEmployee({...props.currentEmployee, clockedIn: false})
 
       props.setEmployees((prev: Employee[]) =>

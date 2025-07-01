@@ -12,4 +12,5 @@ export interface Employee {
   turnValue: number;
   appointments: Appointment[];
   lastClockIn?: Date;
+  password: string;
 }
