@@ -69,8 +69,8 @@ export default function TurnModal(props: {
               ...e,
               turnValue: e.turnValue + appt.turns,
               appointments: [
-                ...(e.appointments || []), 
-                {...appt, timeAssigned: new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
+                {...appt, timeAssigned: new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })},
+                ...(e.appointments || []),
               ],
             }
           : e
