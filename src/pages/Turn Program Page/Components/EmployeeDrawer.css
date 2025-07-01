@@ -4,6 +4,7 @@
   flex-direction: row;
   align-items: center;
   height: 6vh;
+  width: 100%;
 }
 
 .icons {
@@ -15,7 +16,7 @@
 .clock-button {
   margin: 0;
   margin-left: 1vw;
-  width: 25%; 
+  width: 12vw; 
   height: 8vh;
   font-size: 1.3rem;
   position: absolute;

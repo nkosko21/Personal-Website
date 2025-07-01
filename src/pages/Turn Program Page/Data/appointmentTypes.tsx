@@ -144,7 +144,7 @@ export const appointmentTypes: Appointment[] = [
     id: crypto.randomUUID(),
     shortName: "R",
     longName: "Repair/Removal",
-    turns: 0, // Find Out
+    turns: 0,
   },
   {
     id: crypto.randomUUID(),

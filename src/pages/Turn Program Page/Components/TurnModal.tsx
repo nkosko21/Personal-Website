@@ -55,15 +55,6 @@ export default function TurnModal(props: {
     </h1>
   );
 
-  const skipAppointment = () => {
-    if (props.employeeCounter + 1 >= getSortedQueue().length) {
-      props.closeAppointment();
-      props.setEmployeeCounter(0);
-    } else {
-      props.setEmployeeCounter((prev: number) => prev + 1);
-    }
-  }
-
   const handleAppointment = (employee: Employee, appointment?: string) => {
     const appt = appointment 
       ? appointmentTypes.find(a => a.longName === appointment) 
@@ -127,7 +118,6 @@ export default function TurnModal(props: {
                 setEmployeeCounter={props.setEmployeeCounter} 
                 currentAppointment={props.currentAppointment} 
                 handleAppointment={handleAppointment} 
-                skipAppointment={skipAppointment} 
               />
       }
     </Modal>

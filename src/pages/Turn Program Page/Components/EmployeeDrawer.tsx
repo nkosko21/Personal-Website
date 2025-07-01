@@ -42,7 +42,11 @@ export default function EmployeeDrawer(props:
 
     const clockButton = (
       <Button 
-        onClick={() => props.currentEmployee?.clockedIn ? clockOut(props.currentEmployee.id): clockIn(props.currentEmployee?.id ?? '')}
+        onClick={() => 
+          props.currentEmployee?.clockedIn 
+          ? clockOut(props.currentEmployee.id)
+          : clockIn(props.currentEmployee?.id ?? '')
+        }
         color={props.currentEmployee?.clockedIn ? "#C94C4C" : "#81B29A"}
         radius='xl'
         className="clock-button"
@@ -58,7 +62,7 @@ export default function EmployeeDrawer(props:
           flexDirection: 'column',
           alignItems: 'flex-start',
           position: 'relative',
-          width: '200%'
+          width: '48vw'
         }}
       >
         <h1 className="employee-header">
