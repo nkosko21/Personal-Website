@@ -4,7 +4,7 @@ export default interface Appointment {
   id: string;
   shortName: string;
   longName: string;
-  points: number;
+  turns: number;
   timeAssigned?: string;
   gradient?: Gradient
 }

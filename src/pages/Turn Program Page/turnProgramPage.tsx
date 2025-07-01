@@ -16,7 +16,7 @@ export default function TurnTracker() {
   const [employeeCounter, setEmployeeCounter] = useState(0);
   const [currentAppointment, setCurrentAppointment] = useState<string>("");
   const [currentEmployee, setCurrentEmployee] = useState<Employee>();
-  const sortedQueue: Employee[] = [...employees].sort((a, b) => a.turnValue - b.turnValue);
+  const sortedQueue: Employee[] = [...employees].filter(emp => emp.clockedIn).sort((a, b) => a.turnValue - b.turnValue);
 
   const addEmployee = (name: string) => {
     const newEmployee: Employee = {
@@ -61,7 +61,7 @@ export default function TurnTracker() {
         e.id === employee.id
           ? {
               ...e,
-              turnValue: e.turnValue + appointment.points,
+              turnValue: e.turnValue + appointment.turns,
               appointments: [
                 ...(e.appointments || []), 
                 {...appointment, timeAssigned: new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
@@ -90,8 +90,6 @@ export default function TurnTracker() {
   }
 
   const turnModal = () => {
-    console.log(sortedQueue)
-    console.log(employeeCounter)
     if (!sortedQueue[employeeCounter] || !currentAppointment) return
     const hasPermission = sortedQueue[employeeCounter].permissions?.some(
       (permission) => permission.id === currentAppointment
@@ -106,7 +104,9 @@ export default function TurnTracker() {
         <p 
           style={{ 
             fontSize: '1.2rem',
-            margin: 0 
+            margin: 0,
+            marginTop: '10px',
+            color: '#F1F1F1'
           }}
         >
           It is{' '}
@@ -117,26 +117,43 @@ export default function TurnTracker() {
           </span> 
           {' '}turn
         </p>
-        <Button 
-          onClick={skipAppointment}
+        <br/>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            marginBottom: '10px',
+          }}
         >
-          Skip
-        </Button>
-        <Button onClick={() => handleAppointment(sortedQueue[employeeCounter])}>
-          Take
-        </Button>
+          <Button 
+            onClick={skipAppointment}
+            color='#EF4444'
+            // className='appointment-choice'
+            style={{width: '30%', height: '8vh', fontSize: '1.3rem'}}
+          >
+            Skip
+          </Button>
+          <Button 
+            onClick={() => handleAppointment(sortedQueue[employeeCounter])}
+            color='#10B981'  
+            style={{width: '30%', height: '8vh', fontSize: '1.3rem'}}
+          >
+            Take
+          </Button>
+        </div>
       </div>
     );
   }
 
   const handleDeleteAppointment = (appointment: Appointment, employeeId: string) => {
-    const points = appointmentTypes.find((a) => a.id === appointment.id)?.points || 0;
+    const turns = appointmentTypes.find((a) => a.id === appointment.id)?.turns || 0;
     setEmployees((prev) =>
       prev.map((e) =>
         e.id === employeeId
           ? {
               ...e,
-              turnValue: e.turnValue - points,
+              turnValue: e.turnValue - turns,
               appointments: e.appointments.filter((a) => a !== appointment),
             }
           : e
@@ -155,10 +172,11 @@ export default function TurnTracker() {
       <p 
         style={{
           margin: 0,
-          width: 'fit-content'
+          width: 'fit-content',
+          color: '#CCCCCC',
         }}
       >
-        {'('}{appointmentTypes.find((a) => a.id === currentAppointment)?.points}pts{')'}
+        {'('}{appointmentTypes.find((a) => a.id === currentAppointment)?.turns} turns{')'}
       </p>
     </h1>
   );
@@ -214,19 +232,35 @@ export default function TurnTracker() {
         <h1 style={{fontSize: '2rem'}}>
           {currentEmployee?.name}
         </h1>
-        <Button 
-          onClick={() => currentEmployee?.clockedIn ? clockOut(currentEmployee.id): clockIn(currentEmployee?.id ?? '')}
-          style={{margin: 0, marginLeft: '1vw'}}
-          color={currentEmployee?.clockedIn ? "#C94C4C" : "#81B29A"}
-        >
-          {currentEmployee?.clockedIn ? "Clock Out": "Clock In"}
-        </Button>
       </span>
     );
     return(
-        <Drawer opened={employeeOpened} onClose={() => {closeEmployee(); closePermission()}} title={employeeTitle}>
-          <Button onClick={permissionOpened ? closePermission : openPermission}>View Permissions</Button>
-          <Collapse in={permissionOpened}>
+        <Drawer 
+          opened={employeeOpened} 
+          onClose={() => {
+            closeEmployee(); 
+            closePermission();
+          }} 
+          title={employeeTitle}
+        >
+          <Button 
+            onClick={permissionOpened ? closePermission : openPermission}
+            color='#4A6FA5'
+            radius='md'
+          >
+            View Permissions
+          </Button>
+          <Button 
+            onClick={() => currentEmployee?.clockedIn ? clockOut(currentEmployee.id): clockIn(currentEmployee?.id ?? '')}
+            style={{margin: 0, marginLeft: '1vw'}}
+            color={currentEmployee?.clockedIn ? "#C94C4C" : "#81B29A"}
+            radius='md'
+          >
+            {currentEmployee?.clockedIn ? "Clock Out": "Clock In"}
+          </Button>
+          <Collapse 
+            in={permissionOpened}
+          >
             <div
               style={{
                 display: 'flex',
@@ -241,6 +275,11 @@ export default function TurnTracker() {
           <AppointmentHistory appointments={currentEmployee?.appointments ?? []}/>
         </Drawer>
     )
+  }
+
+  const handleEmployeeClick = (employee: Employee) => {
+    setCurrentEmployee(employee);
+    openEmployee();
   }
 
   return (
@@ -262,6 +301,7 @@ export default function TurnTracker() {
             employeeList={employees} 
             handleDeleteAppointment={handleDeleteAppointment} 
             handleSwapAppointment={handleSwapAppointment}
+            handleEmployeeClick={handleEmployeeClick}
           />
         </div>
         <div className="buttons-container">
@@ -270,34 +310,38 @@ export default function TurnTracker() {
               <Button 
                 variant="gradient"
                 gradient={a.gradient}
+                // color='#C9A26D'
                 onClick={() => handleChoice(a.id)} 
                 className="appointment-button"
                 key={a.id}
+                radius='xs'
               >
-                <p style={{fontSize: '1.5rem', color: 'white'}}>{a.shortName}</p>
+                <p style={{fontSize: '1.5rem'}}>{a.shortName}</p>
                 {/* <p style={{fontSize: '.5rem',}}>{a.longName}</p> */}
               </Button>
             ))}
           </div>
-          <Button 
-            color ='#BFA2DB' 
-            onClick={() => addEmployee(prompt("Employee name:") || "")}
-          >
-            <p style={{color: '#F1F1F1'}}>
-              Add Employee
-            </p>
-          </Button>
+          <div className='settings-container'>
+            <Button 
+              onClick={() => addEmployee(prompt("Employee name:") || "")}
+              radius='md'
+              className="settings-button"
+              color="#4A6FA5"
+            >
+              <p>
+                Add Employee
+              </p>
+            </Button>
+          </div>
           <div className="employees-container">
             {employees.map((e) => (
               <Button 
-                onClick={() => {
-                  setCurrentEmployee(e);
-                  openEmployee();
-                }}
+                onClick={() => handleEmployeeClick(e)}
                 className="employee-button"
                 key={e.id}
+                color={e.clockedIn ? '	#4ADE80' : '#A08A6D'}
               >
-                {e.name}
+                <p style={{fontSize: '1.3rem'}}>{e.name}</p>
               </Button>
             ))}
           </div>

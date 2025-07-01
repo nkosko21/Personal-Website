@@ -4,6 +4,11 @@
   height: 100vh;
   display: flex;
   flex-direction: row;
+
+  p {
+    color: #F1F1F1;
+    margin: 0;
+  }
 }
 .main-tables {
   overflow-x: hidden;        /* This div isn't the one that scrolls */
@@ -18,12 +23,29 @@
   padding: 1rem;
 }
 
+.settings-container {
+  height: 10vh;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 5px solid #666;
+  border-radius: var(--mantine-radius-xs);
+
+  .settings-button {
+    height: 100%;
+    margin: 0;
+  }
+}
+
 .appointment-types-container {
   overflow-y: scroll;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;   /* <- Use flex-start for natural overflow */
   max-height: 52vh;
+  padding: 5px;
+  border: 5px solid #666;
+  border-radius: var(--mantine-radius-xs);
 
   .appointment-button {
     height: 9vh;
@@ -40,10 +62,40 @@
   flex-wrap: wrap;
   justify-content: center;
   overflow: scroll;
+    padding: 10px;
+  border: 5px solid #666;
+  border-radius: var(--mantine-radius-xs);
 
   .employee-button {
     height: 11vh;
     width: 45%;
     margin: .5rem;
   }
+}
+
+.mantine-Drawer-header {
+  background-color: #4A4553;
+  color: #F1F1F1;
+  padding: 20px;
+}
+
+.mantine-Drawer-content {
+  background-color: #4A4553;
+  color: #F1F1F1;
+  border-right: 2px solid #5E5B6A;
+}
+
+.mantine-Modal-content {
+  background-color: #4A4553;
+}
+
+.mantine-Modal-header {
+  background-color: #4A4553;
+  color: #F1F1F1;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #5E5B6A;
+}
+
+Button {
+  margin: 0;
 }
