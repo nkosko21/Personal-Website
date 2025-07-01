@@ -193,6 +193,9 @@ export default function TurnTracker() {
         checked={employees.find((emp) => emp.id === currentEmployee?.id)?.permissions!.includes(appointment)}
         key={appointment.id}
         label={appointment.longName}
+        size='lg'
+        color='#4A6FA5'
+        // variant='outline'
         onChange={(event) => event.currentTarget.checked 
           ? setEmployees((prev) =>
               prev.map((e) =>
