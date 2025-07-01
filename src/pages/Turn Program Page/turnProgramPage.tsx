@@ -1,6 +1,6 @@
 import { Button } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import HourGrid from "./HourGrid";
 import { Employee } from "./Types/Employee";
 import Appointment from "./Types/Appointment";
@@ -13,6 +13,7 @@ import AppointmentButton from "./Components/AppointmentButton";
 export default function TurnTracker() {
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [appointmentOpened, { open: openAppointment, close: closeAppointment }] = useDisclosure(false);
+  const appointmentOpenedRef = useRef(appointmentOpened);
   const [employeeOpened, { open: openEmployee, close: closeEmployee }] = useDisclosure(false);
   const [permissionOpened, { open: openPermission, close: closePermission }] = useDisclosure(false);
   const [employeeCounter, setEmployeeCounter] = useState(0);
@@ -20,6 +21,23 @@ export default function TurnTracker() {
   const [currentEmployee, setCurrentEmployee] = useState<Employee>();
   const [multiSelectMode, setMultiSelectMode] = useState<boolean>(false);
   const [multiSelectQueue, setMultiselectQueue] = useState<string[]>([]);
+
+  useEffect(() => {
+    appointmentOpenedRef.current = appointmentOpened;
+  }, [appointmentOpened]);
+
+  function waitForClose(ms = 300): Promise<void> {
+    return new Promise((resolve) => {
+      const check = () => {
+        if (!appointmentOpenedRef.current) {
+          setTimeout(resolve, ms); // small pause to allow animation to fully finish
+        } else {
+          setTimeout(check, 500);
+        }
+      };
+      check();
+    });
+  }
 
   const addEmployee = (name: string, password: string) => {
     const newEmployee: Employee = {
@@ -73,8 +91,16 @@ export default function TurnTracker() {
         : prevEmp));
   }
 
-  const handleMultiSubmit = () => {
-    multiSelectQueue.map(appointment => handleSingleAppointment(appointment));
+  const handleMultiSubmit = async () => {
+    const handleSequentialAppointments = async () => {
+     for (const appointment of multiSelectQueue) {
+      console.log("Opening:");
+      await handleSingleAppointment(appointment);
+      await waitForClose();
+      console.log("Closed:");
+      }
+    };
+    await handleSequentialAppointments();
     setMultiselectQueue([]);
     setMultiSelectMode(false);
   }
@@ -137,7 +163,7 @@ export default function TurnTracker() {
             <Button 
               onClick={
                 multiSelectMode 
-                ? () => handleMultiSubmit()
+                ? async () => await handleMultiSubmit()
                 : () => setMultiSelectMode(true)}
               radius='md'
               className="settings-button"

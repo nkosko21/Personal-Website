@@ -85,8 +85,8 @@ export default function TurnModal(props: {
     <Modal 
       opened={props.appointmentOpened} 
       onClose={() => {
-        props.closeAppointment(); 
         props.setEmployeeCounter(0);
+        props.closeAppointment(); 
       }} 
       title={turnModalTitle}
       closeButtonProps={{
