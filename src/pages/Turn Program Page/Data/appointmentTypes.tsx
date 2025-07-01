@@ -172,5 +172,12 @@ export const appointmentTypes: Appointment[] = [
     longName: 'Plus Full Turn',
     turns: 1,
     gradient: {from: 'gray', to: 'gray', deg: 45}
+  },
+  {
+    id: crypto.randomUUID(),
+    shortName: 'RQ',
+    longName: 'Appointment Request',
+    turns: .5,
+    gradient: {from: 'brown', to: 'brown', deg: 45}
   }
 ]

@@ -1,6 +1,6 @@
 import React from 'react';
 import './HourGrid.css';
-import Employee from './Types/Employee';
+import {Employee} from './Types/Employee';
 import { Button, em, Popover, Text } from '@mantine/core';
 
 export default function HourGrid(props : 
@@ -12,8 +12,8 @@ export default function HourGrid(props :
   }) {
   const currentEmployees = [...props.employeeList].filter(emp => emp.clockedIn);
   const sortedEmployeeList = [...currentEmployees].sort((a, b) => {
-    const aTime = new Date(a.LastClockIn ?? '').getTime();
-    const bTime = new Date(b.LastClockIn ?? '').getTime();
+    const aTime = new Date(a.lastClockIn ?? '').getTime();
+    const bTime = new Date(b.lastClockIn ?? '').getTime();
     return aTime - bTime;
   });
 
@@ -93,7 +93,7 @@ export default function HourGrid(props :
             ? sortedEmployeeList.map((employee) => (
                 getAppointments(employee)
             ))
-            : getAppointments({id: '0', name: '', clockedIn: false, permissions: [], turnValue: 0, appointments: [], LastClockIn: new Date()})
+            : getAppointments({id: '0', name: '', clockedIn: false, permissions: [], turnValue: 0, appointments: [], lastClockIn: new Date()})
         }
         </tbody>
       </table>

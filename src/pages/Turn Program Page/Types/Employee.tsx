@@ -1,11 +1,15 @@
 import Appointment from "./Appointment";
+export interface Permission {
+  appointment: Appointment;
+  level: 0 | 1 | 2;
+}
 
-export default interface Employee {
+export interface Employee {
   id: string;
   name: string;
   clockedIn: boolean;
-  permissions: Appointment[];
+  permissions: Permission[];
   turnValue: number;
   appointments: Appointment[];
-  LastClockIn?: Date;
+  lastClockIn?: Date;
 }

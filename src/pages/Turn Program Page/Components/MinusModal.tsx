@@ -1,5 +1,5 @@
 import { Button, Select } from "@mantine/core";
-import Employee from "../Types/Employee";
+import {Employee} from "../Types/Employee";
 import { useState } from "react";
 import { appointmentTypes } from "../Data/appointmentTypes";
 

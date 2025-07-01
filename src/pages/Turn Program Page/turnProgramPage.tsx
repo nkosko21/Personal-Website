@@ -1,14 +1,13 @@
-import { Button, Checkbox, Collapse, Drawer, em, Modal, Select } from "@mantine/core";
+import { Button } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import React, { useState } from "react";
 import HourGrid from "./HourGrid";
-import Employee from "./Types/Employee";
+import { Employee } from "./Types/Employee";
 import Appointment from "./Types/Appointment";
 import { appointmentTypes } from "./Data/appointmentTypes";
-import AppointmentHistory from "./Components/AppointmentHistory";
-import './TurnProgramPage.css';
 import TurnModal from "./Components/TurnModal";
-import MinusModal from "./Components/MinusModal";
+import EmployeeDrawer from "./Components/EmployeeDrawer";
+import './TurnProgramPage.css'
 
 export default function TurnTracker() {
   const [employees, setEmployees] = useState<Employee[]>([]);
@@ -18,21 +17,21 @@ export default function TurnTracker() {
   const [employeeCounter, setEmployeeCounter] = useState(0);
   const [currentAppointment, setCurrentAppointment] = useState<string>("");
   const [currentEmployee, setCurrentEmployee] = useState<Employee>();
-  const sortedQueue: Employee[] = [...employees]
-  .filter(emp => emp.clockedIn)
-  .map(emp => ({
-    ...emp,
-    turnValue: Math.floor(emp.turnValue),
-  }))
-  .sort((a, b) => {
-    if (a.turnValue !== b.turnValue) {
-      return a.turnValue - b.turnValue;
-    }
+  const sortedQueue: Employee[] = 
+    employees.filter(emp => emp.clockedIn)
+    .map(emp => ({
+      ...emp,
+      turnValue: Math.floor(emp.turnValue),
+    }))
+    .sort((a, b) => {
+      if (a.turnValue !== b.turnValue) {
+        return a.turnValue - b.turnValue;
+      }
 
-    const aTime = new Date(a.LastClockIn ?? '').getTime();
-    const bTime = new Date(b.LastClockIn ?? '').getTime();
-    return aTime - bTime;
-  });
+      const aTime = new Date(a.lastClockIn ?? '').getTime();
+      const bTime = new Date(b.lastClockIn ?? '').getTime();
+      return aTime - bTime;
+    });
 
   const addEmployee = (name: string) => {
     const newEmployee: Employee = {
@@ -46,63 +45,10 @@ export default function TurnTracker() {
     setEmployees([...employees, newEmployee]);
   };
 
-  const clockIn = (id: string) => {
-    if (currentEmployee) setCurrentEmployee({...currentEmployee, clockedIn: true})
-
-    setEmployees((prev) =>
-      prev.map((e) =>
-        e.id === id ? { ...e, clockedIn: true, turnValue: 0, LastClockIn: new Date() } : e
-      )
-    );
-  };
-
-  const clockOut = (id: string) => {
-    if (currentEmployee) setCurrentEmployee({...currentEmployee, clockedIn: false})
-
-    setEmployees((prev) =>
-      prev.map((e) =>
-        e.id === id ? { ...e, clockedIn: false, turnValue: 0 } : e
-      )
-    );
-  };
-
-  const handleAppointment = (employee: Employee) => {
-    if (sortedQueue.length === 0) return;
-    const appointment = appointmentTypes.find((a) => a.id === currentAppointment);
-    if (!appointment) return;
-    
-    
-    setEmployees((prev) =>
-      prev.map((e) =>
-        e.id === employee.id
-          ? {
-              ...e,
-              turnValue: e.turnValue + appointment.turns,
-              appointments: [
-                ...(e.appointments || []), 
-                {...appointment, timeAssigned: new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
-              ],
-            }
-          : e
-      )
-    );
-
-    setEmployeeCounter(0);
-    closeAppointment();
-  };
 
   const handleChoice = (appointmentId: string) => {
     setCurrentAppointment(appointmentId);
     openAppointment();
-  }
-  
-  const skipAppointment = () => {
-    if (employeeCounter + 1 >= sortedQueue.length) {
-      closeAppointment();
-      setEmployeeCounter(0);
-    } else {
-      setEmployeeCounter(prev => prev + 1);
-    }
   }
 
   const handleDeleteAppointment = (appointment: Appointment, employeeId: string) => {
@@ -125,143 +71,6 @@ export default function TurnTracker() {
     openAppointment();
   }
 
-  const turnModalTitle = (
-    <h1>
-      {appointmentTypes.find((a) => a.id === currentAppointment)?.longName} 
-      <p 
-        style={{
-          margin: 0,
-          width: 'fit-content',
-          color: '#CCCCCC',
-        }}
-      >
-        {'('}{appointmentTypes.find((a) => a.id === currentAppointment)?.turns} turns{')'}
-      </p>
-    </h1>
-  );
-  
-  const permissionCheck = (appointment: Appointment) => {
-
-    return (
-      <Checkbox 
-        style={{
-          width:'fit-content',
-          margin: 10,
-        }}
-        checked={employees.find((emp) => emp.id === currentEmployee?.id)?.permissions!.includes(appointment)}
-        key={appointment.id}
-        label={appointment.longName}
-        size='lg'
-        color='#4A6FA5'
-        // variant='outline'
-        onChange={(event) => event.currentTarget.checked 
-          ? setEmployees((prev) =>
-              prev.map((e) =>
-                e.id === currentEmployee?.id
-                  ? {
-                      ...e,
-                      permissions: [...e.permissions, appointment],
-                    }
-                  : e
-              )
-            )
-          : setEmployees((prev) =>
-              prev.map((e) =>
-                e.id === currentEmployee?.id
-                  ? {
-                      ...e,
-                      permissions: e.permissions.filter((appt) => appt.id !== appointment.id),
-                    }
-                  : e
-              )
-            )
-        }
-      />
-    );
-  }  
-
-  const employeeDrawer = () => {
-    const shortTime = currentEmployee?.LastClockIn?.toLocaleTimeString("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    });
-    
-    const employeeTitle = (
-      <span
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          width: 'max-content'
-        }}
-      >
-        <h1 style={{fontSize: '3rem'}}>
-          {currentEmployee?.name}
-        </h1>
-        {currentEmployee?.LastClockIn && (
-          <p
-            style={{ fontSize: '1rem', color: 'rgb(204, 204, 204)', margin: 0 }}
-          >
-            {`Clocked in at ${shortTime}`}
-          </p>
-        )}
-      </span>
-    );
-
-
-    return(
-        <Drawer 
-          opened={employeeOpened} 
-          onClose={() => {
-            closeEmployee(); 
-            closePermission();
-          }} 
-          title={employeeTitle}
-          size='lg'
-        >
-          <Button 
-            onClick={permissionOpened ? closePermission : openPermission}
-            color='#4A6FA5'
-            radius='md'
-            style={{width: '40%', height: '8vh', fontSize: '1.3rem'}}
-          >
-            View Permissions
-          </Button>
-          <Button 
-            onClick={() => currentEmployee?.clockedIn ? clockOut(currentEmployee.id): clockIn(currentEmployee?.id ?? '')}
-            color={currentEmployee?.clockedIn ? "#C94C4C" : "#81B29A"}
-            radius='md'
-            style={{
-              margin: 0, 
-              marginLeft: '1vw', 
-              width: '40%', 
-              height: '8vh', 
-              fontSize: '1.3rem'
-            }}
-          >
-            {currentEmployee?.clockedIn ? "Clock Out": "Clock In"}
-          </Button>
-          <Collapse 
-            in={permissionOpened}
-          >
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                justifyContent: 'center'
-              }}
-            >
-              {appointmentTypes.map((appt) => permissionCheck(appt))}
-            </div>
-          </Collapse> 
-          <br/>
-          <AppointmentHistory appointments={currentEmployee?.appointments ?? []}/>
-        </Drawer>
-    )
-  }
-
   const handleEmployeeClick = (employee: Employee) => {
     setCurrentEmployee(employee);
     openEmployee();
@@ -277,35 +86,27 @@ export default function TurnTracker() {
 
   return (
     <div className='turn-program-container'>
-      <Modal 
-        opened={appointmentOpened} 
-        onClose={() => {
-          closeAppointment(); 
-          setEmployeeCounter(0);
-        }} 
-        title={turnModalTitle}
-      >
-        {appointmentTypes
-          .filter(a => a.shortName === '+H' || a.shortName === '+F')
-          .map(a => a.id)
-          .some(a => a === currentAppointment)
-            ? <MinusModal 
-                employees={employees} 
-                handleMinusModal={handleMinusModal}
-                currentAppointment={currentAppointment}
-                closeModal={closeAppointment}
-              />
-            : <TurnModal 
-                sortedQueue={sortedQueue} 
-                employeeCounter={employeeCounter} 
-                setEmployeeCounter={setEmployeeCounter} 
-                currentAppointment={currentAppointment} 
-                handleAppointment={handleAppointment} 
-                skipAppointment={skipAppointment} 
-              />
-        }
-      </Modal>
-      {employeeDrawer()}
+      <TurnModal 
+        appointmentOpened={appointmentOpened} 
+        currentAppointment={currentAppointment} 
+        employeeCounter={employeeCounter} 
+        employees={employees} 
+        closeAppointment={closeAppointment} 
+        setEmployeeCounter={setEmployeeCounter} 
+        handleMinusModal={handleMinusModal} 
+        setEmployees={setEmployees} 
+      />
+      <EmployeeDrawer
+        currentEmployee={currentEmployee}
+        setCurrentEmployee={setCurrentEmployee}
+        employees={employees} 
+        employeeOpened={employeeOpened}
+        permissionOpened={permissionOpened} 
+        closeEmployee={closeEmployee} 
+        closePermission={closePermission} 
+        openPermission={openPermission} 
+        setEmployees={setEmployees}
+      />
       <div style={{display: 'flex', flexDirection: 'row'}}>
         <div className="main-tables">
           <HourGrid 

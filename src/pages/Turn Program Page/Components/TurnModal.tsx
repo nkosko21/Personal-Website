@@ -1,68 +1,118 @@
-import { Button } from "@mantine/core";
-import Employee from "../Types/Employee";
+import { Modal } from "@mantine/core";
+import { appointmentTypes } from "../Data/appointmentTypes";
+import MinusModal from "./MinusModal";
+import AppointmentModal from "./AppointmentModal";
+import {Employee} from "../Types/Employee";
 
-export default function TurnModal(props: 
-  {
-    sortedQueue: Employee[],
-    employeeCounter: number,
-    setEmployeeCounter: any,
-    currentAppointment: string,
-    handleAppointment: any,
-    skipAppointment: any,
-  }) {
-  if (!props.sortedQueue[props.employeeCounter] || !props.currentAppointment) return <></>
-  const hasPermission = props.sortedQueue[props.employeeCounter].permissions?.some(
-    (permission) => permission.id === props.currentAppointment
+export default function TurnModal(props: {
+  appointmentOpened: boolean,
+  currentAppointment: string,
+  employeeCounter: number,
+  employees: Employee[],
+  closeAppointment: any,
+  setEmployeeCounter: any,
+  handleMinusModal: any,
+  setEmployees: any,
+}) {
+  const getSortedQueue = () => {
+    const queue = props.employees
+      .filter(e => e.clockedIn)
+      .sort((a, b) => {
+        const appointmentId = props.currentAppointment;
+
+        const getLevel = (emp: Employee): number => {
+          const perm = emp.permissions.find(p => p.appointment.id === appointmentId);
+          return perm?.level ?? 0
+        };
+
+        const levelA = getLevel(a);
+        const levelB = getLevel(b);
+        if (levelA !== levelB) return levelB - levelA;
+
+        if (a.turnValue !== b.turnValue) return a.turnValue - b.turnValue;
+
+        const timeA = new Date(a.lastClockIn ?? new Date()).getTime();
+        const timeB = new Date(b.lastClockIn ?? new Date()).getTime();
+        return timeA - timeB;
+      })
+    return queue;
+  }
+  const turnModalTitle = (
+    <h1>
+      {appointmentTypes.find((a) => a.id === props.currentAppointment)?.longName} 
+      <p 
+        style={{
+          margin: 0,
+          width: 'fit-content',
+          color: '#CCCCCC',
+        }}
+      >
+        {'('}{appointmentTypes.find((a) => a.id === props.currentAppointment)?.turns} turns{')'}
+      </p>
+    </h1>
   );
 
-  if (!hasPermission) {
-    props.setEmployeeCounter(props.employeeCounter + 1);
+  const skipAppointment = () => {
+    if (props.employeeCounter + 1 >= getSortedQueue().length) {
+      props.closeAppointment();
+      props.setEmployeeCounter(0);
+    } else {
+      props.setEmployeeCounter((prev: number) => prev + 1);
+    }
   }
 
-  return (
-    <div>
-      <p 
-        style={{ 
-          fontSize: '1.2rem',
-          margin: 0,
-          marginTop: '10px',
-          color: '#F1F1F1'
-        }}
-      >
-        It is{' '}
-        <span 
-          style={{ fontWeight:'bold' }}
-        >
-          {props.sortedQueue.length > 0 ? props.sortedQueue[props.employeeCounter].name: ''}'s
-        </span> 
-        {' '}turn
-      </p>
-      <br/>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-evenly',
-          marginBottom: '10px',
-        }}
-      >
-        <Button 
-          onClick={props.skipAppointment}
-          color='#EF4444'
-          radius='md'
-          style={{width: '30%', height: '8vh', fontSize: '1.3rem'}}
-        >
-          Skip
-        </Button>
-        <Button 
-          onClick={() => props.handleAppointment(props.sortedQueue[props.employeeCounter])}
-          color='#10B981'  
-          radius='md'
-          style={{width: '30%', height: '8vh', fontSize: '1.3rem'}}
-        >
-          Take
-        </Button>
-      </div>
-    </div>
-  );
+  const handleAppointment = (employee: Employee) => {
+    const appointment = appointmentTypes.find((a) => a.id === props.currentAppointment);
+    if (!appointment) return;
+    
+    
+    props.setEmployees((prev: Employee[]) =>
+      prev.map((e) =>
+        e.id === employee.id
+          ? {
+              ...e,
+              turnValue: e.turnValue + appointment.turns,
+              appointments: [
+                ...(e.appointments || []), 
+                {...appointment, timeAssigned: new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
+              ],
+            }
+          : e
+      )
+    );
+
+    props.setEmployeeCounter(0);
+    props.closeAppointment();
+  };
+    
+  return(      
+    <Modal 
+      opened={props.appointmentOpened} 
+      onClose={() => {
+        props.closeAppointment(); 
+        props.setEmployeeCounter(0);
+      }} 
+      title={turnModalTitle}
+    >
+      {appointmentTypes
+        .filter(a => a.shortName === '+H' || a.shortName === '+F')
+        .map(a => a.id)
+        .some(a => a === props.currentAppointment)
+          ? <MinusModal 
+              employees={props.employees} 
+              handleMinusModal={props.handleMinusModal}
+              currentAppointment={props.currentAppointment}
+              closeModal={props.closeAppointment}
+            />
+          : <AppointmentModal 
+              sortedQueue={getSortedQueue()} 
+              employeeCounter={props.employeeCounter} 
+              setEmployeeCounter={props.setEmployeeCounter} 
+              currentAppointment={props.currentAppointment} 
+              handleAppointment={handleAppointment} 
+              skipAppointment={skipAppointment} 
+            />
+      }
+    </Modal>
+    )
 }
