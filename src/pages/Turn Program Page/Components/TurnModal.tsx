@@ -5,6 +5,7 @@ import AppointmentModal from "./AppointmentModal";
 import {Employee} from "../Types/Employee";
 import RequestModal from "./RequestModal";
 import Appointment from "../Types/Appointment";
+import { IconXboxX } from "@tabler/icons-react";
 
 export default function TurnModal(props: {
   appointmentOpened: boolean,
@@ -97,6 +98,9 @@ export default function TurnModal(props: {
         props.setEmployeeCounter(0);
       }} 
       title={turnModalTitle}
+      closeButtonProps={{
+          icon: <IconXboxX size={30} stroke={1.5} color='#F1F1F1' style={{marginBottom: '35px'}}/>,
+        }}
     >
       {appointmentTypes
         .filter(a => a.shortName === '+H' || a.shortName === '+F')
