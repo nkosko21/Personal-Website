@@ -128,8 +128,10 @@ export default function TurnTracker() {
                 key={a.id}
                 radius='xs'
               >
-                <p style={{fontSize: '1.5rem'}}>{a.shortName}</p>
-                {/* <p style={{fontSize: '.5rem',}}>{a.longName}</p> */}
+                <span style={{display: 'flex', flexDirection: 'column'}}>
+                  <p style={{fontSize: '1.5rem', marginBottom: '-10px'}}>{a.shortName}</p>
+                  <p style={{fontSize: '.5rem',}}>{a.turns}{` turn${a.turns === 1 ? '' : 's'}`}</p>
+                </span>
               </Button>
             ))}
           </div>
