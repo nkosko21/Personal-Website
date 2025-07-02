@@ -30,7 +30,7 @@ export default function TurnTracker() {
     return new Promise((resolve) => {
       const check = () => {
         if (!appointmentOpenedRef.current) {
-          setTimeout(resolve, ms); // small pause to allow animation to fully finish
+          setTimeout(resolve, ms);
         } else {
           setTimeout(check, 500);
         }
@@ -38,6 +38,18 @@ export default function TurnTracker() {
       check();
     });
   }
+  const waitForOpen = () => {
+    return new Promise<void>((resolve) => {
+      const check = () => {
+        if (appointmentOpenedRef.current) {
+          resolve();
+        } else {
+          setTimeout(check, 50);
+        }
+      };
+      check();
+    });
+  };
 
   const addEmployee = (name: string, password: string) => {
     const newEmployee: Employee = {
@@ -53,9 +65,10 @@ export default function TurnTracker() {
   };
 
 
-  const handleSingleAppointment = (appointmentId: string) => {
+  const handleSingleAppointment = async (appointmentId: string) => {
     setCurrentAppointment(appointmentId);
     openAppointment();
+    await waitForOpen();
   }
 
   const handleDeleteAppointment = (appointment: Appointment, employeeId: string) => {
@@ -94,10 +107,8 @@ export default function TurnTracker() {
   const handleMultiSubmit = async () => {
     const handleSequentialAppointments = async () => {
      for (const appointment of multiSelectQueue) {
-      console.log("Opening:");
       await handleSingleAppointment(appointment);
       await waitForClose();
-      console.log("Closed:");
       }
     };
     await handleSequentialAppointments();
@@ -160,10 +171,10 @@ export default function TurnTracker() {
                 Add Employee
               </p>
             </Button>
-            <Button 
+            <Button
               onClick={
                 multiSelectMode 
-                ? async () => await handleMultiSubmit()
+                ? () => handleMultiSubmit()
                 : () => setMultiSelectMode(true)}
               radius='md'
               className="settings-button"
